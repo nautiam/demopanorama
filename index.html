@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama loading progress</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        a:link,
+        a:visited {
+            color: #bdc3c7;
+        }
+
+        .credit {
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            padding: 20px 0;
+            color: #fff;
+        }
+
+        #progress {
+            width: 0;
+            height: 5px;
+            position: fixed;
+            top: 0;
+            background: #fff;
+            -webkit-transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease;
+        }
+
+        #progress.finish {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="progress"></div>
+    <script src="/js/three/three.min.js"></script>
+    <script src="/js/panolens/panolens.min.js"></script>
+
+    <script>
+
+        var panorama, panorama2, panorama3, viewer, progress, progressElement;
+
+        progressElement = document.getElementById('progress');
+
+        function onEnter(event) {
+
+            progressElement.style.width = 0;
+            progressElement.classList.remove('finish');
+
+        }
+
+        function onProgress(event) {
+
+            progress = event.progress.loaded / event.progress.total * 100;
+            progressElement.style.width = progress + '%';
+            if (progress === 100) {
+                progressElement.classList.add('finish');
+            }
+
+        }
+
+        /**
+         * Output infospot attach position in developer console by holding down Ctrl button
+         */
+        PANOLENS.Viewer.prototype.outputInfospotPosition = function () {
+
+                var intersects, point, panoramaWorldPosition, outputPosition;
+
+                intersects = this.raycaster.intersectObject(this.panorama, true);
+
+                if (intersects.length > 0) {
+
+                    point = intersects[0].point;
+                    panoramaWorldPosition = this.panorama.getWorldPosition();
+
+                    // Panorama is scaled -1 on X axis
+                    outputPosition = new THREE.Vector3(
+                        -(point.x - panoramaWorldPosition.x).toFixed(2),
+                        (point.y - panoramaWorldPosition.y).toFixed(2),
+                        (point.z - panoramaWorldPosition.z).toFixed(2)
+                    );
+
+                    switch (this.options.output) {
+
+                        case 'console':
+                            console.info(outputPosition.x + ', ' + outputPosition.y + ', ' + outputPosition.z);
+                            break;
+
+                        case 'overlay':
+                            this.outputDivElement.textContent = outputPosition.x + ', ' + outputPosition.y + ', ' + outputPosition.z;
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                }
+
+            };
+
+        
+
+        // First panorama
+        dayLuiBaoLucXaPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-xa.jpg');
+        dayLuiBaoLucXaPano.addEventListener('progress', onProgress);
+        dayLuiBaoLucXaPano.addEventListener('enter', onEnter);
+
+        dayLuiBaoLucXaPano.addEventListener("click", function(e){
+            if (e.intersects.length > 0) return;
+            const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
+            console.log('click panorama\n', e, 'point\n', a);
+        });
+        
+
+        // Second panorama
+        dayLuiBaoLucGanPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-gan.jpg');
+        dayLuiBaoLucGanPano.addEventListener('progress', onProgress);
+        dayLuiBaoLucGanPano.addEventListener('enter', onEnter);
+
+        dayLuiBaoLucGanPano.addEventListener("click", function(e){
+            if (e.intersects.length > 0) return;
+            const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
+            console.log('click panorama\n', e, 'point\n', a);
+        });
+
+        // Third panorama
+        anSinhPano = new PANOLENS.ImagePanorama('asset/demo/an-sinh-xa-hoi.jpg');
+        anSinhPano.addEventListener('progress', onProgress);
+        anSinhPano.addEventListener('enter', onEnter);
+
+        // panorama3.addEventListener("click", function(e){
+        //     if (e.intersects.length > 0) return;
+        //     const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
+        //     console.log('click panorama\n', e, 'point\n', a);
+        // });
+
+        koAiBiBoLaiPano = new PANOLENS.ImagePanorama('asset/demo/khong-ai-bi-bo-lai-phia-sau.jpg');
+        koAiBiBoLaiPano.addEventListener('progress', onProgress);
+        koAiBiBoLaiPano.addEventListener('enter', onEnter);
+
+        cungLenTiengXaPano = new PANOLENS.ImagePanorama('asset/demo/cung-len-tieng-xa.jpg');
+        cungLenTiengXaPano.addEventListener('progress', onProgress);
+        cungLenTiengXaPano.addEventListener('enter', onEnter);
+
+        cungLenTiengGanPano = new PANOLENS.ImagePanorama('asset/demo/cung-len-tieng-gan.jpg');
+        cungLenTiengGanPano.addEventListener('progress', onProgress);
+        cungLenTiengGanPano.addEventListener('enter', onEnter);
+
+        phudieu1Pano = new PANOLENS.ImagePanorama('asset/demo/phu-dieu-1.jpg');
+        phudieu1Pano.addEventListener('progress', onProgress);
+        phudieu1Pano.addEventListener('enter', onEnter);
+
+        phudieu2Pano = new PANOLENS.ImagePanorama('asset/demo/phu-dieu-2.jpg');
+        phudieu2Pano.addEventListener('progress', onProgress);
+        phudieu2Pano.addEventListener('enter', onEnter);
+
+        phudieu1Pano.addEventListener("click", function(e){
+            if (e.intersects.length > 0) return;
+            const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
+            console.log('click panorama\n', e, 'point\n', a);
+        });
+
+        // Linking panoramas
+        dayLuiBaoLucXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, "asset/textures/arrow-up.png");
+        dayLuiBaoLucXaPano.link(anSinhPano, new THREE.Vector3(5000, -3000, -2000), 600, "asset/textures/arrow-left.png");
+        dayLuiBaoLucXaPano.link(koAiBiBoLaiPano, new THREE.Vector3(5000, -3000, 2000), 600, "asset/textures/arrow-right.png");
+
+        dayLuiBaoLucGanPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -4000, 0), 600, "asset/textures/arrow-down.png");
+        dayLuiBaoLucGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -300, 0), 600, "asset/textures/day-lui-bao-luc-up.png");
+        dayLuiBaoLucGanPano.link(phudieu1Pano, new THREE.Vector3(5000, -500, -5000), 600, "asset/textures/day-lui-bao-luc-left.png");
+        dayLuiBaoLucGanPano.link(phudieu2Pano, new THREE.Vector3(5000, -500, 5000), 600, "asset/textures/day-lui-bao-luc-right.png");
+
+        anSinhPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, -500), 600, "asset/textures/an-sinh-xa-hoi-down.png");
+
+        koAiBiBoLaiPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, -500), 600, "asset/textures/khong-ai-bi-bo-lai-phia-sau-down.png");
+
+        cungLenTiengXaPano.link(cungLenTiengGanPano, new THREE.Vector3(5000, -300, 0), 600, "asset/textures/cung-len-tieng-up.png");
+        cungLenTiengXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, "asset/textures/cung-len-tieng-down.png");
+
+        cungLenTiengGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -3000, 0), 600, "asset/textures/cung-len-tieng-gan-down.png");
+
+
+        // panorama.link(panorama3, new THREE.Vector3(4954.53, 319.21, -556.71));
+        // panorama3.link(panorama, new THREE.Vector3(-3399.16, 1015.42, -5000.00));
+
+        viewer = new PANOLENS.Viewer();
+        viewer.add(dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
+
+
+
+    </script>
+
+</body>
+
+</html>
