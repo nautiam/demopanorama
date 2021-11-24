@@ -170,13 +170,29 @@
         phudieu2Pano.addEventListener('progress', onProgress);
         phudieu2Pano.addEventListener('enter', onEnter);
 
-        phudieu1Pano.addEventListener("click", function(e){
+        letan1Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-1.jpg');
+        letan1Pano.addEventListener('progress', onProgress);
+        letan1Pano.addEventListener('enter', onEnter);
+
+        letan2Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-2.jpg');
+        letan2Pano.addEventListener('progress', onProgress);
+        letan2Pano.addEventListener('enter', onEnter);
+
+        letan3Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-3.jpg');
+        letan3Pano.addEventListener('progress', onProgress);
+        letan3Pano.addEventListener('enter', onEnter);
+
+        letan1Pano.addEventListener("click", function(e){
             if (e.intersects.length > 0) return;
             const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
             console.log('click panorama\n', e, 'point\n', a);
         });
 
         // Linking panoramas
+        letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -500, -2000), 600, "asset/textures/le-tan-1-left.png");
+        letan1Pano.link(letan3Pano, new THREE.Vector3(5000, -500, 2000), 600, "asset/textures/le-tan-1-right.png");
+        letan1Pano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -2000, 0), 600, "asset/textures/le-tan-1-up.png");
+
         dayLuiBaoLucXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, "asset/textures/arrow-up.png");
         dayLuiBaoLucXaPano.link(anSinhPano, new THREE.Vector3(5000, -3000, -2000), 600, "asset/textures/arrow-left.png");
         dayLuiBaoLucXaPano.link(koAiBiBoLaiPano, new THREE.Vector3(5000, -3000, 2000), 600, "asset/textures/arrow-right.png");
@@ -200,7 +216,7 @@
         // panorama3.link(panorama, new THREE.Vector3(-3399.16, 1015.42, -5000.00));
 
         viewer = new PANOLENS.Viewer();
-        viewer.add(dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
+        viewer.add(letan1Pano, letan2Pano, letan3Pano, dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
 
 
 
