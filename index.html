@@ -42,7 +42,36 @@
         #progress.finish {
             opacity: 0;
         }
+
+        .container {
+            max-width: 500px;
+            max-height: 500px;
+            min-width: 200px;
+            min-height: 250px;
+            padding: 40px 20px;
+            background: #fff;
+            color: #000;
+            border-radius: 3px;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            text-align: center;
+        }
+
+        .container img {
+            height: 200px;
+        }
+
+        .gap {
+            width: 100%;
+            height: 30px;
+        }
+
+        .container .small-image img {
+            max-height: 50px;
+        }
     </style>
+
+    <link rel="shortcut icon" href="#">
 </head>
 
 <body>
@@ -53,6 +82,20 @@
         </video>
         <!-- <iframe class="iframe"><video width="235px" height="290px" src="/asset/textures/video/ClashofClans.mp4" type="video/mp4" /></iframe> -->
     </div>
+
+    <div id="chair-container" class="container" style="display:none">
+        <img id="big-picture" src="asset/models/room/metal.jpg" />
+        <div class="gap"></div>
+        <div class="small-image">
+            <i class="metal"><img id="metal" onclick='changeImage("asset/models/room/metal.jpg");' src="asset/models/room/metal.jpg" /></i>
+            <i class="wood_birch"><img onclick='changeImage("asset/models/room/wood_birch.png");' src="asset/models/room/wood_birch.png" /></i>
+            <i class="wood_cherry"><img id="wood_cherry" onclick='changeImage("asset/models/room/wood_cherry.png");' src="asset/models/room/wood_cherry.png" /></i>
+            <i class="1941-battle"><img id="1941-battle" onclick='changeImage("asset/textures/1941-battle.jpg");' src="asset/textures/1941-battle.jpg" /></i>
+            <i class="1941-battle-thumb"><img  id="1941-battle-thumb" onclick='changeImage("asset/textures/1941-battle-thumb.png");'
+                    src="asset/textures/1941-battle-thumb.png" /></i>
+        </div>
+    </div>
+
     <div id="progress"></div>
     <script src="/js/three/three.min.js"></script>
     <script src="/js/panolens/panolens.min.js"></script>
@@ -80,66 +123,99 @@
 
         }
 
+        function onProgress1(event) {
+            progress = event.progress.loaded / event.progress.total * 100;
+            progressElement.style.width = progress + '%';
+            if (progress === 100) {
+                progressElement.classList.add('finish');
+                console.log("hover");
+                // infospot.onHoverStart();
+                // console.log(event.mouseEvent);
+                // infospot.focus();
+                // infospot.onHoverStart(event);
+            }
+        }
+
+        function changeImage(a) {
+            console.log(a);
+            var element = document.getElementById("big-picture");
+            console.log(element);
+            
+            document.getElementById("big-picture").src = a;
+            var children = infospot.element.getElementsByTagName('img');// any tag could be used here..
+
+            for(var i = 0; i< children.length;i++)
+            {
+                if (children[i].getAttribute('id') == 'big-picture') // any attribute could be used here
+                {
+                // do what ever you want with the element..  
+                // children[i] holds the element at the moment..
+                    console.log(children[i]);
+                    children[i].src = a;
+                }
+            }
+        }
+
         /**
          * Output infospot attach position in developer console by holding down Ctrl button
          */
         PANOLENS.Viewer.prototype.outputInfospotPosition = function () {
 
-                var intersects, point, panoramaWorldPosition, outputPosition;
+            var intersects, point, panoramaWorldPosition, outputPosition;
 
-                intersects = this.raycaster.intersectObject(this.panorama, true);
+            intersects = this.raycaster.intersectObject(this.panorama, true);
 
-                if (intersects.length > 0) {
+            if (intersects.length > 0) {
 
-                    point = intersects[0].point;
-                    panoramaWorldPosition = this.panorama.getWorldPosition();
+                point = intersects[0].point;
+                panoramaWorldPosition = this.panorama.getWorldPosition();
 
-                    // Panorama is scaled -1 on X axis
-                    outputPosition = new THREE.Vector3(
-                        -(point.x - panoramaWorldPosition.x).toFixed(2),
-                        (point.y - panoramaWorldPosition.y).toFixed(2),
-                        (point.z - panoramaWorldPosition.z).toFixed(2)
-                    );
+                // Panorama is scaled -1 on X axis
+                outputPosition = new THREE.Vector3(
+                    -(point.x - panoramaWorldPosition.x).toFixed(2),
+                    (point.y - panoramaWorldPosition.y).toFixed(2),
+                    (point.z - panoramaWorldPosition.z).toFixed(2)
+                );
 
-                    switch (this.options.output) {
+                switch (this.options.output) {
 
-                        case 'console':
-                            console.info(outputPosition.x + ', ' + outputPosition.y + ', ' + outputPosition.z);
-                            break;
+                    case 'console':
+                        console.info(outputPosition.x + ', ' + outputPosition.y + ', ' + outputPosition.z);
+                        break;
 
-                        case 'overlay':
-                            this.outputDivElement.textContent = outputPosition.x + ', ' + outputPosition.y + ', ' + outputPosition.z;
-                            break;
+                    case 'overlay':
+                        this.outputDivElement.textContent = outputPosition.x + ', ' + outputPosition.y + ', ' + outputPosition.z;
+                        break;
 
-                        default:
-                            break;
-
-                    }
+                    default:
+                        break;
 
                 }
 
-            };
+            }
 
-        
+        };
+
+
 
         // First panorama
         dayLuiBaoLucXaPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-xa.jpg');
         dayLuiBaoLucXaPano.addEventListener('progress', onProgress);
         dayLuiBaoLucXaPano.addEventListener('enter', onEnter);
 
-        dayLuiBaoLucXaPano.addEventListener("click", function(e){
+        dayLuiBaoLucXaPano.addEventListener("click", function (e) {
             if (e.intersects.length > 0) return;
             const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
             console.log('click panorama\n', e, 'point\n', a);
         });
-        
+
 
         // Second panorama
         dayLuiBaoLucGanPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-gan.jpg');
         dayLuiBaoLucGanPano.addEventListener('progress', onProgress);
         dayLuiBaoLucGanPano.addEventListener('enter', onEnter);
 
-        dayLuiBaoLucGanPano.addEventListener("click", function(e){
+        dayLuiBaoLucGanPano.addEventListener("click", function (e) {
             if (e.intersects.length > 0) return;
             const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
             console.log('click panorama\n', e, 'point\n', a);
@@ -185,10 +261,10 @@
         letan2Pano.addEventListener('enter', onEnter);
 
         letan3Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-3.jpg');
-        letan3Pano.addEventListener('progress', onProgress);
+        letan3Pano.addEventListener('progress', onProgress1);
         letan3Pano.addEventListener('enter', onEnter);
 
-        letan3Pano.addEventListener("click", function(e){
+        letan3Pano.addEventListener("click", function (e) {
             if (e.intersects.length > 0) return;
             const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
             console.log('click panorama\n', e, 'point\n', a);
@@ -225,12 +301,26 @@
         infospot = new PANOLENS.Infospot(600, "asset/textures/danger.png");
 
         infospot.position.set(5000, 0, 0);
-        infospot.addHoverElement( document.getElementById( 'desc-container' ), 200 );
-        infospot.addEventListener("click", function () {
+        // infospot.addHoverElement( document.getElementById( 'desc-container' ), 0 );
+        infospot.addHoverElement(document.getElementById('chair-container'), 200);
+        infospot.addEventListener("click", function (event) {
             this.focus();
+            infospot.onClick(event);
         });
-        
+
         letan3Pano.add(infospot);
+        // const video = document.getElementById( 'desc-container' );
+        // const videoTexture = new THREE.VideoTexture( video );
+        // var movieMaterial = new THREE.MeshBasicMaterial({ map: videoTexture, overdraw: true, side: THREE.DoubleSide });
+        // // the geometry on which the movie will be displayed;
+        // // 		movie image will be scaled to fit these dimensions.
+        // var movieGeometry = new THREE.PlaneGeometry(240, 100, 4, 4);
+        // var movieScreen = new THREE.Mesh(movieGeometry, movieMaterial);
+        // movieScreen.position.set(2000, 0, 0);
+        // letan3Pano.add(movieScreen);
+
+        // var element = document.getElementById( 'desc-container' );
+
 
         // panorama.link(panorama3, new THREE.Vector3(4954.53, 319.21, -556.71));
         // panorama3.link(panorama, new THREE.Vector3(-3399.16, 1015.42, -5000.00));
