@@ -6,92 +6,461 @@
     <meta name="viewport"
         content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
     <title>Panolens.js panorama loading progress</title>
-    <style>
-        html,
-        body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        a:link,
-        a:visited {
-            color: #bdc3c7;
-        }
-
-        .credit {
-            position: absolute;
-            text-align: center;
-            width: 100%;
-            padding: 20px 0;
-            color: #fff;
-        }
-
-        #progress {
-            width: 0;
-            height: 5px;
-            position: fixed;
-            top: 0;
-            background: #fff;
-            -webkit-transition: opacity 0.5s ease;
-            transition: opacity 0.5s ease;
-        }
-
-        #progress.finish {
-            opacity: 0;
-        }
-
-        .container {
-            max-width: 500px;
-            max-height: 500px;
-            min-width: 200px;
-            min-height: 250px;
-            padding: 40px 20px;
-            background: #fff;
-            color: #000;
-            border-radius: 3px;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-            text-align: center;
-        }
-
-        .container img {
-            height: 200px;
-        }
-
-        .gap {
-            width: 100%;
-            height: 30px;
-        }
-
-        .container .small-image img {
-            max-height: 50px;
-        }
-    </style>
+    <!-- <style>
+        
+    </style> -->
+    <link rel="stylesheet" href="/asset/css/styles.css">
+    <link rel="stylesheet" href="/asset/css/popup.css">
 
     <link rel="shortcut icon" href="#">
 </head>
 
 <body>
+    <!-- Images used to open the lightbox -->
+    <!-- <div class="row">
+        <div class="column">
+            <img src="img_nature.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
+                class="hover-shadow cursor">
+        </div>
+        <div class="column">
+            <img src="img_snow.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
+                class="hover-shadow cursor">
+        </div>
+        <div class="column">
+            <img src="img_mountains.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
+                class="hover-shadow cursor">
+        </div>
+        <div class="column">
+            <img src="img_lights.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
+                class="hover-shadow cursor">
+        </div>
+    </div> -->
+
+    <div id="myModal" class="modal">
+        <span class="close cursor" onclick='closeModal("myModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="mySlides">
+                <div class="numbertext">1 / 3</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/covid19.jpg" style="height:90vh">
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">2 / 3</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-68.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">3 / 3</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-126.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/covid19.jpg" style="width:100%" onclick="currentSlide(1)"
+                    alt="Covid-19">
+            </div>
+            <div class="column">
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-68/nghi-quyet-68-1.png" style="width:100%" onclick="currentSlide(2)"
+                    alt="Nghị quyết 68">
+            </div>
+            <div class="column">
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-126/nghi-quyet-126-1.png" style="width:100%" onclick="currentSlide(3)"
+                    alt="Nghị quyết 126">
+            </div>
+        </div>
+    </div>
+
+    <div id="ngoinhaModal" class="modal">
+        <span class="close cursor" onclick='closeModal("ngoinhaModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="ngoinhaSlides">
+                <div class="numbertext">1 / 2</div>
+                <img src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/ngoi-nha-binh-yen/dia-chi-tin-cay.png" style="height:90vh">
+            </div>
+
+            <div class="ngoinhaSlides">
+                <div class="numbertext">2 / 2</div>
+                <iframe src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/ngoi-nha-binh-yen/ngoi-nha-binh-yen.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <a class="prev" onclick="ngoinhaPlusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="ngoinhaPlusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="ngoinhaCaption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="ngoinhademo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/ngoi-nha-binh-yen/ngoi-nha-binh-yen/ngoi-nha-binh-yen-1.png" style="width:100%" onclick="ngoinhaCurrentSlide(2)"
+                    alt="Ngôi nhà bình yên">
+            </div>
+        </div>
+    </div>
+
+    <div id="ossoModal" class="modal">
+        <span class="close cursor" onclick='closeOssoModal("ossoModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="ossoSlides">
+                <div class="numbertext">1 / 1</div>
+                <img src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/256154823_2071190486383830_4420616191007957820_n.jpg" style="width:100%">
+            </div>
+
+            <div class="ossoSlides">
+                <div class="numbertext">2 / 2</div>
+                <video width="90%" autoplay controls>
+                    <source src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/OSSO-Introduction.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <a class="prev" onclick="ossoPlusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="ossoPlusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="ossoCaption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="ossodemo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/256154823_2071190486383830_4420616191007957820_n.jpg" style="width:100%" onclick="ossoCurrentSlide(1)"
+                    alt="Bạn không đơn độc">
+            </div>
+            <div class="column">
+                <img class="ossodemo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/osso-gioi-thieu.png" style="width:100%" onclick="ossoCurrentSlide(2)"
+                    alt="OSSO - Giới thiệu">
+            </div>
+        </div>
+    </div>
+
+    <div id="cunglentiengModal" class="modal">
+        <span class="close cursor" onclick='closeOssoModal("cunglentiengModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="cunglentiengSlides">
+                <div class="numbertext">1 / 1</div>
+                <video height="90%" autoplay controls>
+                    <source src="/asset/board/KV-cung-len-tieng/PCT-BuiHoa-thongdiep.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <a class="prev" onclick="cunglentiengPlusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="cunglentiengPlusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="cunglentiengCaption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="cunglentiengdemo" src="/asset/board/KV-cung-len-tieng/cung-len-tieng.png" style="width: 100%" onclick="cunglentiengCurrentSlide(1)"
+                    alt="Bạn không đơn độc">
+            </div>
+        </div>
+    </div>
+
+    <div id="danhbaModal" class="modal">
+        <span class="close cursor" onclick='closeModal("danhbaModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="danhbaSlides">
+                <div class="numbertext">1 / 1</div>
+                <iframe src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/danh-ba/danh-ba-2203.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <a class="prev" onclick="danhbaPlusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="danhbaPlusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="danhbaCaption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="danhbademo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/danh-ba/danh-ba-2203-001.png" style="width:100%" onclick="danhbaCurrentSlide(1)"
+                    alt="Danh bạ địa chỉ cơ quan, tổ chức hỗ trợ phụ nữ và trẻ em bị bạo lực xâm hại">
+            </div>
+        </div>
+    </div>
+
+    <div id="baolucModal" class="modal">
+        <span class="close cursor" onclick='closeModal("baolucModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="baolucSlides">
+                <div class="numbertext">1 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-1.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">2 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-2.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">3 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-3.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">4 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-4.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">5 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/126495837_1785967824906099_384538671787521786_n.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">6 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/20191124vnbaolucphunutreemngoc0101.jpg" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">7 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/bao-hanh-phu-nu.jpg" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">8 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-1.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">9 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-2.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">10 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-3.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">11 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-4.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">12 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/wcms_764782.png" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">13 / 17</div>
+                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/xam_hai_tre_em.jpeg" style="height:90vh">
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">14 / 17</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/khuyen-nghi-chinh-sach-kinh-te.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">15 / 17</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-1970.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">16 / 17</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-28.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <div class="baolucSlides">
+                <div class="numbertext">17 / 17</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/quyet-dinh-2232.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <a class="prev" onclick="baolucPlusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="baolucPlusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="baolucCaption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-1.png" style="width:100%" onclick="baolucCurrentSlide(1)"
+                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-2.png" style="width:100%" onclick="baolucCurrentSlide(2)"
+                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-3.png" style="width:100%" onclick="baolucCurrentSlide(3)"
+                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-4.png" style="width:100%" onclick="baolucCurrentSlide(4)"
+                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/126495837_1785967824906099_384538671787521786_n.png" style="width:100%" onclick="baolucCurrentSlide(5)"
+                    alt="Tô cam thế giới">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/20191124vnbaolucphunutreemngoc0101.jpg" style="width:100%" onclick="baolucCurrentSlide(6)"
+                    alt="Phụ nữ và trẻ em gái cần được bảo vệ">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/bao-hanh-phu-nu.jpg" style="width:100%" onclick="baolucCurrentSlide(7)"
+                    alt="Bạo hành phụ nữ">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-1.png" style="width:100%" onclick="baolucCurrentSlide(8)"
+                    alt="Các hình thức bạo lực">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-2.png" style="width:100%" onclick="baolucCurrentSlide(9)"
+                    alt="Các hình thức bạo lực">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-3.png" style="width:100%" onclick="baolucCurrentSlide(10)"
+                    alt="Các hình thức bạo lực">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-4.png" style="width:100%" onclick="baolucCurrentSlide(11)"
+                    alt="Các hình thức bạo lực">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/wcms_764782.png" style="width:100%" onclick="baolucCurrentSlide(12)"
+                    alt="Lao động nữ trong đại dịch Covid-19">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/xam_hai_tre_em.jpeg" style="width:100%" onclick="baolucCurrentSlide(13)"
+                    alt="Xâm hại trẻ em">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/khuyen-nghi-chinh-sach-kinh-te/khuyen-nghi-chinh-sach-kinh-te-01.png" style="width:100%" onclick="baolucCurrentSlide(14)"
+                    alt="Khuyến nghị chính sách kinh tế">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-1970/nghi-quyet-1970-1.png" style="width:100%" onclick="baolucCurrentSlide(15)"
+                    alt="Nghị quyết 1970">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-28/nghi-quyet-28-1.png" style="width:100%" onclick="baolucCurrentSlide(16)"
+                    alt="Nghị quyết 28">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/quyet-dinh-2232/quyet-dinh-2232-1.png" style="width:100%" onclick="baolucCurrentSlide(17)"
+                    alt="Quyết định 2232">
+            </div>
+        </div>
+    </div>
+
+    <div id="tocamModal" class="modal">
+        <span class="close cursor" onclick='closeTocamModal("tocamModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="tocamSlides">
+                <div class="numbertext">1 / 5</div>
+                <video width="90%" autoplay controls>
+                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="tocamSlides">
+                <div class="numbertext">2 / 5</div>
+                <video width="90%" autoplay controls>
+                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/2.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="tocamSlides">
+                <div class="numbertext">3 / 5</div>
+                <video width="90%" autoplay controls>
+                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/3.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="tocamSlides">
+                <div class="numbertext">4 / 5</div>
+                <video width="90%" autoplay controls>
+                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/4.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="tocamSlides">
+                <div class="numbertext">5 / 5</div>
+                <video width="90%" autoplay controls>
+                    <source src="/asset/board/KV-to-cam-Viet-Nam/Binh-dang-gioi.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <a class="prev" onclick="tocamPlusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="tocamPlusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="tocamCaption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney.png" style="width:100%" onclick="tocamCurrentSlide(1)"
+                    alt="Peace Journey - Hành trình bình yên">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney2.png" style="width:100%" onclick="tocamCurrentSlide(2)"
+                    alt="Peace Journey - Hành trình bình yên 2">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney3.png" style="width:100%" onclick="tocamCurrentSlide(3)"
+                    alt="Peace Journey - Hành trình bình yên 3">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney4.png" style="width:100%" onclick="tocamCurrentSlide(4)"
+                    alt="Peace Journey - Hành trình bình yên 4">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/binh-dang-gioi.png" style="width:100%" onclick="tocamCurrentSlide(5)"
+                    alt="Bình đẳng giới">
+            </div>
+        </div>
+    </div>
 
     <div id="desc-container" style="display:none">
         <video width="320" height="240" autoplay>
             <source src="asset/textures/video/ClashofClans.mp4" type="video/mp4">
         </video>
-        <!-- <iframe class="iframe"><video width="235px" height="290px" src="/asset/textures/video/ClashofClans.mp4" type="video/mp4" /></iframe> -->
+    </div>
+
+    <div id="letan2-container" class="letan2-container" style="display:none">
+        <img src="asset/models/gioi-thieu-trien-lam.png" />
     </div>
 
     <div id="chair-container" class="container" style="display:none">
-        <img id="big-picture" src="asset/models/room/metal.jpg" />
+        <embed id="big-picture" src="asset/models/room/metal.jpg" />
         <div class="gap"></div>
         <div class="small-image">
-            <i class="metal"><img id="metal" onclick='changeImage("asset/models/room/metal.jpg");' src="asset/models/room/metal.jpg" /></i>
-            <i class="wood_birch"><img onclick='changeImage("asset/models/room/wood_birch.png");' src="asset/models/room/wood_birch.png" /></i>
-            <i class="wood_cherry"><img id="wood_cherry" onclick='changeImage("asset/models/room/wood_cherry.png");' src="asset/models/room/wood_cherry.png" /></i>
-            <i class="1941-battle"><img id="1941-battle" onclick='changeImage("asset/textures/1941-battle.jpg");' src="asset/textures/1941-battle.jpg" /></i>
-            <i class="1941-battle-thumb"><img  id="1941-battle-thumb" onclick='changeImage("asset/textures/1941-battle-thumb.png");'
+            <i class="metal"><embed id="metal" onclick='changeImage("asset/models/room/metal.jpg");'
+                    src="asset/models/room/metal.jpg" /></i>
+            <i class="wood_birch"><embed onclick='changeImage("asset/models/room/wood_birch.png");'
+                    src="asset/models/room/wood_birch.png" /></i>
+            <i class="wood_cherry"><embed id="wood_cherry" onclick='changeImage("asset/models/room/wood_cherry.png");'
+                    src="asset/models/room/wood_cherry.png" /></i>
+            <i class="1941-battle"><embed id="1941-battle" onclick='changeImage("asset/textures/1941-battle.jpg");'
+                    src="asset/textures/1941-battle.jpg" /></i>
+            <i class="1941-battle-thumb"><embed id="1941-battle-thumb"
+                    onclick='changeImage("asset/textures/1941-battle-thumb.png");'
                     src="asset/textures/1941-battle-thumb.png" /></i>
         </div>
     </div>
@@ -99,6 +468,14 @@
     <div id="progress"></div>
     <script src="/js/three/three.min.js"></script>
     <script src="/js/panolens/panolens.min.js"></script>
+    <script src="/panorama.js"></script>
+    <script src="/popup.js"></script>
+    <script src="/baolucPopup.js"></script>
+    <script src="/ngoinhaPopup.js"></script>
+    <script src="/ossoPopup.js"></script>
+    <script src="/danhbaPopup.js"></script>
+    <script src="/tocamPopup.js"></script>
+    <script src="/cunglentiengPopup.js"></script>
 
     <script>
         var arrowUpBase64 = 'data:image/png;base64,' + readTextFile('asset/textures/position/arrow-up-base64.txt');
@@ -144,28 +521,26 @@
             progressElement.style.width = progress + '%';
             if (progress === 100) {
                 progressElement.classList.add('finish');
-                console.log("hover");
-                // infospot.onHoverStart();
-                // console.log(event.mouseEvent);
-                // infospot.focus();
-                // infospot.onHoverStart(event);
             }
         }
 
         function changeImage(a) {
             console.log(a);
-            var element = document.getElementById("big-picture");
-            console.log(element);
-            
-            document.getElementById("big-picture").src = a;
-            var children = infospot.element.getElementsByTagName('img');// any tag could be used here..
+            // var element = document.getElementById("big-picture");
+            // console.log(element);
 
-            for(var i = 0; i< children.length;i++)
-            {
+            // document.getElementById("big-picture").src = a;
+            // var element = infospot.element.getElementsByTagName('img');
+            // console.log(element);
+            // element.src = a;
+            var children = infospot.element.getElementsByTagName('embed');// any tag could be used here..
+
+
+            for (var i = 0; i < children.length; i++) {
                 if (children[i].getAttribute('id') == 'big-picture') // any attribute could be used here
                 {
-                // do what ever you want with the element..  
-                // children[i] holds the element at the moment..
+                    // do what ever you want with the element..  
+                    // children[i] holds the element at the moment..
                     console.log(children[i]);
                     children[i].src = a;
                 }
@@ -212,140 +587,9 @@
 
         };
 
-        // First panorama
-        dayLuiBaoLucXaPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-xa.jpg');
-        dayLuiBaoLucXaPano.addEventListener('progress', onProgress);
-        dayLuiBaoLucXaPano.addEventListener('enter', onEnter);
-
-        dayLuiBaoLucXaPano.addEventListener("click", function (e) {
-            if (e.intersects.length > 0) return;
-            const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
-            console.log('click panorama\n', e, 'point\n', a);
-        });
-
-
-        // Second panorama
-        dayLuiBaoLucGanPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-gan.jpg');
-        dayLuiBaoLucGanPano.addEventListener('progress', onProgress);
-        dayLuiBaoLucGanPano.addEventListener('enter', onEnter);
-
-        dayLuiBaoLucGanPano.addEventListener("click", function (e) {
-            if (e.intersects.length > 0) return;
-            const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
-            console.log('click panorama\n', e, 'point\n', a);
-        });
-
-        // Third panorama
-        anSinhPano = new PANOLENS.ImagePanorama('asset/demo/an-sinh-xa-hoi.jpg');
-        anSinhPano.addEventListener('progress', onProgress);
-        anSinhPano.addEventListener('enter', onEnter);
-
-        // panorama3.addEventListener("click", function(e){
-        //     if (e.intersects.length > 0) return;
-        //     const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
-        //     console.log('click panorama\n', e, 'point\n', a);
-        // });
-
-        koAiBiBoLaiPano = new PANOLENS.ImagePanorama('asset/demo/khong-ai-bi-bo-lai-phia-sau.jpg');
-        koAiBiBoLaiPano.addEventListener('progress', onProgress);
-        koAiBiBoLaiPano.addEventListener('enter', onEnter);
-
-        cungLenTiengXaPano = new PANOLENS.ImagePanorama('asset/demo/cung-len-tieng-xa.jpg');
-        cungLenTiengXaPano.addEventListener('progress', onProgress);
-        cungLenTiengXaPano.addEventListener('enter', onEnter);
-
-        cungLenTiengGanPano = new PANOLENS.ImagePanorama('asset/demo/cung-len-tieng-gan.jpg');
-        cungLenTiengGanPano.addEventListener('progress', onProgress);
-        cungLenTiengGanPano.addEventListener('enter', onEnter);
-
-        phudieu1Pano = new PANOLENS.ImagePanorama('asset/demo/phu-dieu-1.jpg');
-        phudieu1Pano.addEventListener('progress', onProgress);
-        phudieu1Pano.addEventListener('enter', onEnter);
-
-        phudieu2Pano = new PANOLENS.ImagePanorama('asset/demo/phu-dieu-2.jpg');
-        phudieu2Pano.addEventListener('progress', onProgress);
-        phudieu2Pano.addEventListener('enter', onEnter);
-
-        letan1Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-1.jpg');
-        letan1Pano.addEventListener('progress', onProgress);
-        letan1Pano.addEventListener('enter', onEnter);
-
-        letan2Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-2.jpg');
-        letan2Pano.addEventListener('progress', onProgress);
-        letan2Pano.addEventListener('enter', onEnter);
-
-        letan3Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-3.jpg');
-        letan3Pano.addEventListener('progress', onProgress1);
-        letan3Pano.addEventListener('enter', onEnter);
-
-        phudieu1Pano.addEventListener("click", function (e) {
-            if (e.intersects.length > 0) return;
-            const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
-            console.log('click panorama\n', e, 'point\n', a);
-        });
-
-        // Linking panoramas
-        letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -500, -2000), 600, Image.ArrowLeft);
-        letan1Pano.link(letan3Pano, new THREE.Vector3(5000, -500, 2000), 600, Image.ArrowRight);
-        letan1Pano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -2000, 0), 600, Image.ArrowUp);
-
-        letan2Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
-        letan3Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
-
-        dayLuiBaoLucXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowUp);
-        dayLuiBaoLucXaPano.link(anSinhPano, new THREE.Vector3(5000, -3000, -2000), 600, Image.ArrowLeft);
-        dayLuiBaoLucXaPano.link(koAiBiBoLaiPano, new THREE.Vector3(5000, -3000, 2000), 600, Image.ArrowRight);
-        dayLuiBaoLucXaPano.link(letan1Pano, new THREE.Vector3(5000, -4000, 0), 600, Image.ArrowDown);
-
-        dayLuiBaoLucGanPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -4000, 0), 600, Image.ArrowDown);
-        dayLuiBaoLucGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -300, 0), 600, Image.ArrowUp);
-        dayLuiBaoLucGanPano.link(phudieu1Pano, new THREE.Vector3(5000, -500, -5000), 600, Image.ArrowLeft);
-        dayLuiBaoLucGanPano.link(phudieu2Pano, new THREE.Vector3(5000, -500, 5000), 600, Image.ArrowRight);
-
-        anSinhPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, -500), 600, Image.ArrowDown);
-
-        koAiBiBoLaiPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, -500), 600, Image.ArrowDown);
-
-        cungLenTiengXaPano.link(cungLenTiengGanPano, new THREE.Vector3(5000, -300, 0), 600, Image.ArrowUp);
-        cungLenTiengXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
-
-        cungLenTiengGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
-
-        phudieu1Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
-        phudieu2Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
-
-        // Custom InfoSpot
-        infospot = new PANOLENS.Infospot(600, Image.Info);
-
-        infospot.position.set(5000, 0, 0);
-        // infospot.addHoverElement( document.getElementById( 'desc-container' ), 0 );
-        infospot.addHoverElement(document.getElementById('chair-container'), 200);
-        infospot.addEventListener("click", function (event) {
-            this.focus();
-            infospot.onClick(event);
-        });
-
-        letan3Pano.add(infospot);
-        // const video = document.getElementById( 'desc-container' );
-        // const videoTexture = new THREE.VideoTexture( video );
-        // var movieMaterial = new THREE.MeshBasicMaterial({ map: videoTexture, overdraw: true, side: THREE.DoubleSide });
-        // // the geometry on which the movie will be displayed;
-        // // 		movie image will be scaled to fit these dimensions.
-        // var movieGeometry = new THREE.PlaneGeometry(240, 100, 4, 4);
-        // var movieScreen = new THREE.Mesh(movieGeometry, movieMaterial);
-        // movieScreen.position.set(2000, 0, 0);
-        // letan3Pano.add(movieScreen);
-
-        // var element = document.getElementById( 'desc-container' );
-
-
-        // panorama.link(panorama3, new THREE.Vector3(4954.53, 319.21, -556.71));
-        // panorama3.link(panorama, new THREE.Vector3(-3399.16, 1015.42, -5000.00));
-
-        viewer = new PANOLENS.Viewer();
-        viewer.add(letan1Pano, letan2Pano, letan3Pano, dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
-
-
+        // Add panorama
+        addPanorama();
+        addCustomInfoSpot();
 
     </script>
 
