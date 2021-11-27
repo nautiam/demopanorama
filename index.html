@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
         content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
-    <title>Panolens.js panorama loading progress</title>
+    <title>Triển lãm 3D hội liên hiệp phụ nữ Việt Nam</title>
     <!-- <style>
         
     </style> -->
@@ -102,6 +102,10 @@
             </div>
 
             <!-- Thumbnail image controls -->
+            <div class="column">
+                <img class="ossodemo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/ngoi-nha-binh-yen/dia-chi-tin-cay.png" style="width:100%" onclick="ngoinhaCurrentSlide(1)"
+                    alt="Ngôi nhà bình yên">
+            </div>
             <div class="column">
                 <img class="ngoinhademo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/ngoi-nha-binh-yen/ngoi-nha-binh-yen/ngoi-nha-binh-yen-1.png" style="width:100%" onclick="ngoinhaCurrentSlide(2)"
                     alt="Ngôi nhà bình yên">
@@ -466,6 +470,15 @@
     </div>
 
     <div id="progress"></div>
+
+    <!-- <div id="CounterVisitor">
+        <span class="counter-item">0</span>
+        <span class="counter-item">0</span>
+        <span class="counter-item">0</span>
+        <span class="counter-item">0</span>
+        <span class="counter-item">0</span>
+        <span class="counter-item">0</span>
+    </div> -->
     <script src="/js/three/three.min.js"></script>
     <script src="/js/panolens/panolens.min.js"></script>
     <script src="/panorama.js"></script>
@@ -476,6 +489,7 @@
     <script src="/danhbaPopup.js"></script>
     <script src="/tocamPopup.js"></script>
     <script src="/cunglentiengPopup.js"></script>
+    <!-- <script src="/count.js"></script> -->
 
     <script>
         var arrowUpBase64 = 'data:image/png;base64,' + readTextFile('asset/textures/position/arrow-up-base64.txt');
@@ -484,6 +498,7 @@
         var arrowRightBase64 = 'data:image/png;base64,' + readTextFile('asset/textures/position/arrow-right-base64.txt');
         var infoBase64 = 'data:image/png;base64,' + readTextFile('asset/textures/position/info-base64.txt');
 
+        // var session = require('express-session');
         const Image = {
             ArrowUp: arrowUpBase64,
             ArrowDown: arrowDownBase64,
@@ -493,6 +508,15 @@
         }
 
         var panorama, panorama2, panorama3, viewer, progress, progressElement;
+
+        var n = localStorage.getItem('on_load_counter');
+        if (n === null) {
+            n = 0;
+        }
+        n++;
+        localStorage.setItem("on_load_counter", n);
+        console.log(n);
+        // document.getElementById('CounterVisitor').innerHTML = n;
 
         progressElement = document.getElementById('progress');
 
