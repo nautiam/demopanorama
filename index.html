@@ -548,6 +548,8 @@
             progressElement.style.width = progress + '%';
             if (progress === 100) {
                 progressElement.classList.add('finish');
+                console.log(event.target);
+                // infiniteLoop(event.target);
             }
         }
 
@@ -556,6 +558,7 @@
             progressElement.style.width = progress + '%';
             if (progress === 100) {
                 progressElement.classList.add('finish');
+                myLoop();
             }
         }
 

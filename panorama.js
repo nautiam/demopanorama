@@ -36,7 +36,7 @@ function addPanorama() {
 
     letan1Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-1.jpg');
     letan1Pano.addEventListener('progress', function(e) {
-        onProgress(e);
+        onProgress1(e);
         customInfospot.focus();
     });
     letan1Pano.addEventListener('enter', onEnter);
@@ -184,7 +184,7 @@ function addCustomInfoSpot() {
 }
 
 var i = 1;
-myLoop();
+// myLoop();
 
 function myLoop() {         //  create a loop function
     setTimeout(function () {   //  call a 3s setTimeout when the loop is called
