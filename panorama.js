@@ -106,7 +106,7 @@ function addCustomInfoSpot() {
     letan2InfoSpot.addHoverElement(document.getElementById('letan2-container'), 20);
     letan2Pano.add(letan2InfoSpot);
 
-    infospot = new PANOLENS.Infospot(300, Image.Info);
+    infospot = new PANOLENS.Infospot(300, Image.Chuoi, true);
     infospot.position.set(5000, 0, 0);
     // infospot.addHoverElement( document.getElementById( 'desc-container' ), 0 );
     // infospot.addHoverElement(document.getElementById('chair-container'), 200);
@@ -116,7 +116,7 @@ function addCustomInfoSpot() {
         // openModal("myModal");currentSlide(1);
         openModal("baolucModal");baolucCurrentSlide(1);
     });
-    // letan3Pano.add(infospot);
+    // letan1Pano.add(infospot);
 
     hotroInfospot = new PANOLENS.Infospot(300, Image.Info);
     hotroInfospot.position.set(5000, -100, -2650);
@@ -166,7 +166,7 @@ function addCustomInfoSpot() {
     });
     dayLuiBaoLucGanPano.add(tocamInfospot);
 
-    cunglentiengInfospot = new PANOLENS.Infospot(450, Image.Info);
+    cunglentiengInfospot = new PANOLENS.Infospot(300, Image.Info);
     cunglentiengInfospot.position.set(5000, -1550, 3250);
     cunglentiengInfospot.addEventListener("click", function (event) {
         this.focus();
@@ -181,4 +181,88 @@ function addCustomInfoSpot() {
         openModal("cunglentiengModal");cunglentiengCurrentSlide(1);
     });
     cungLenTiengXaPano.add(cunglentiengXaInfospot);
+}
+
+var i = 1;
+myLoop();
+
+function myLoop() {         //  create a loop function
+    setTimeout(function () {   //  call a 3s setTimeout when the loop is called
+        i++;
+        if (i % 2 === 0) {
+            scaleUpPanorama(letan1Pano, true);
+            scaleUpPanorama(letan2Pano, true);
+            scaleUpPanorama(letan3Pano, true);
+            scaleUpPanorama(dayLuiBaoLucXaPano, true);
+            scaleUpPanorama(dayLuiBaoLucGanPano, true);
+            scaleUpPanorama(koAiBiBoLaiPano, true);
+            scaleUpPanorama(anSinhPano, true);
+            scaleUpPanorama(cungLenTiengXaPano, true);
+            scaleUpPanorama(cungLenTiengGanPano, true);
+            scaleUpPanorama(phudieu1Pano, true);
+            scaleUpPanorama(phudieu2Pano, true);
+            scaleUpPanorama(letan2Pano, true);
+            // letan1Pano.toggleInfospotVisibility(true);
+            // letan2Pano.toggleInfospotVisibility(true);
+            // letan3Pano.toggleInfospotVisibility(true);
+            // dayLuiBaoLucXaPano.toggleInfospotVisibility(true);
+            // dayLuiBaoLucGanPano.toggleInfospotVisibility(true);
+            // koAiBiBoLaiPano.toggleInfospotVisibility(true);
+            // cungLenTiengXaPano.toggleInfospotVisibility(true);
+            // cungLenTiengGanPano.toggleInfospotVisibility(true);
+            // phudieu1Pano.toggleInfospotVisibility(true);
+            // phudieu2Pano.toggleInfospotVisibility(true);
+            // infospot.show();
+        } else {
+            scaleUpPanorama(letan1Pano, false);
+            scaleUpPanorama(letan2Pano, false);
+            scaleUpPanorama(letan3Pano, false);
+            scaleUpPanorama(dayLuiBaoLucXaPano, false);
+            scaleUpPanorama(dayLuiBaoLucGanPano, false);
+            scaleUpPanorama(koAiBiBoLaiPano, false);
+            scaleUpPanorama(anSinhPano, false);
+            scaleUpPanorama(cungLenTiengXaPano, false);
+            scaleUpPanorama(cungLenTiengGanPano, false);
+            scaleUpPanorama(phudieu1Pano, false);
+            scaleUpPanorama(phudieu2Pano, false);
+            // letan1Pano.toggleInfospotVisibility(false);
+            // letan2Pano.toggleInfospotVisibility(false);
+            // letan3Pano.toggleInfospotVisibility(false);
+            // dayLuiBaoLucXaPano.toggleInfospotVisibility(false);
+            // dayLuiBaoLucGanPano.toggleInfospotVisibility(false);
+            // koAiBiBoLaiPano.toggleInfospotVisibility(false);
+            // cungLenTiengXaPano.toggleInfospotVisibility(false);
+            // cungLenTiengGanPano.toggleInfospotVisibility(false);
+            // phudieu1Pano.toggleInfospotVisibility(false);
+            // phudieu2Pano.toggleInfospotVisibility(false);
+            // infospot.hide();
+        }
+        if (i >= 10) {
+            i = 0;
+        }
+        myLoop();
+    }, 300)
+}
+
+function scaleUpPanorama(parent, isUp) {
+    parent.traverse( function ( object ) {
+        if ( object instanceof PANOLENS.Infospot ) {
+            if (isUp) {
+                object.scaleDownAnimation && object.scaleDownAnimation.stop();
+                object.scaleUpAnimation && object.scaleUpAnimation.start();
+            } else {
+                object.scaleUpAnimation && object.scaleUpAnimation.stop();
+                object.scaleDownAnimation && object.scaleDownAnimation.start();
+            }
+            
+        }
+    } );
+}
+
+function allDescendants (node) {
+    for (var i = 0; i < node.childNodes.length; i++) {
+      var child = node.childNodes[i];
+      allDescendants(child);
+      console.log(child);
+    }
 }
