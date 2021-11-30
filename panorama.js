@@ -56,7 +56,7 @@ function addPanorama() {
     });
 
     // Linking panoramas
-    letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -3000, -2000), 600, Image.ArrowLeft);
+    letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -3000, -2000), 600, Image.ArrowLeft, "Bấm vào đây để sang khu lễ tân", 60);
     letan1Pano.link(letan3Pano, new THREE.Vector3(5000, -3000, 2000), 600, Image.ArrowRight);
     letan1Pano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowUp);
 
@@ -266,3 +266,83 @@ function allDescendants (node) {
       console.log(child);
     }
 }
+
+/**
+ * Link one-way panorama
+ * @param  {PANOLENS.Panorama} pano  - The panorama to be linked to
+ * @param  {THREE.Vector3} position - The position of infospot which navigates to the pano
+ * @param  {number} [imageScale=300] - Image scale of linked infospot
+ * @param  {string} [imageSrc=PANOLENS.DataImage.Arrow] - The image source of linked infospot
+ * @param  {string} text - Text to be displayed
+ * @param  {number} [delta=40] - Vertical delta to the infospot
+ */
+PANOLENS.Panorama.prototype.link = function ( pano, position, imageScale, imageSrc, text, delta ) {
+
+    var scope = this, spot, scale, img;
+
+    this.visible = true;
+
+    if ( !position ) {
+
+        console.warn( 'Please specify infospot position for linking' );
+
+        return;
+
+    }
+
+    // Infospot scale
+    if ( imageScale !== undefined ) {
+
+        scale = imageScale;
+
+    } else if ( pano.linkingImageScale !== undefined ) {
+
+        scale = pano.linkingImageScale;
+
+    } else {
+
+        scale = 300;
+
+    }
+
+
+    // Infospot image
+    if ( imageSrc ) {
+
+        img = imageSrc
+
+    } else if ( pano.linkingImageURL ) {
+
+        img = pano.linkingImageURL;
+
+    } else {
+
+        img = PANOLENS.DataImage.Arrow;
+
+    }
+
+    // Creates a new infospot
+    spot = new PANOLENS.Infospot( scale, img );
+    spot.position.copy( position );
+    spot.toPanorama = pano;
+    spot.addHoverText(text, delta);
+    spot.addEventListener( 'click', function () {
+
+        /**
+         * Viewer handler event
+         * @type {object}
+         * @event PANOLENS.Panorama#panolens-viewer-handler
+         * @property {string} method - Viewer function name
+         * @property {*} data - The argument to be passed into the method
+         */
+        scope.dispatchEvent( { type : 'panolens-viewer-handler', method: 'setPanorama', data: pano } );
+
+    } );
+
+    this.linkedSpots.push( spot );
+
+    this.add( spot );
+
+    this.visible = false;
+
+};
