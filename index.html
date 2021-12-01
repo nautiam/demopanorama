@@ -482,6 +482,14 @@
 
     <div id="progress"></div>
 
+    <!-- <iframe src="/asset/audio/250-milliseconds-of-silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe> -->
+
+    <!-- <audio id="player" autoplay loop muted src="/asset/audio/khue-moc-lang.mp3" type="audio/mp3"></audio> -->
+    <!-- <audio id="audio" muted autoplay src="/asset/audio/khue-moc-lang.mp3"></audio> -->
+    <!-- <input type="button" value="PLAY" onclick="playSound()"> -->
+    <!-- <button id="unmuteButton"></button> -->
+
+
     <!-- <div id="CounterVisitor">
         <span class="counter-item">0</span>
         <span class="counter-item">0</span>
@@ -516,6 +524,44 @@
             ArrowLeft: arrowLeftBase64,
             ArrowRight: arrowRightBase64,
             Info: infoBase64
+        }
+
+        // function playSound() {
+        //     var sound = document.getElementById("audio");
+        //     sound.play();
+        // }
+
+        // window.addEventListener("DOMContentLoaded", event => {
+        //     const audio = document.querySelector("audio");
+        //     audio.volume = 0.2;
+        //     audio.play();
+        // });
+
+        var audio = document.createElement("AUDIO");
+        document.body.appendChild(audio);
+        audio.src = "/asset/audio/file_example_MP3_700KB.mp3";
+        audio.loop = "true";
+
+        var callAudio = false;
+        document.body.addEventListener("click", function () {
+            // const audio = document.querySelector("audio");
+            // audio.play();
+            // Call this only once
+            if (!callAudio) {
+                playSound(true);
+                callAudio = true;
+            }
+        })
+
+        function playSound(isPlay) {
+            // const audio = document.querySelector("audio");
+            if (isPlay) {
+                audio.play();
+            } else {
+                console.log("Stop");
+                console.log(audio);
+                audio.pause();
+            }
         }
 
         var panorama, panorama2, panorama3, viewer, progress, progressElement;
@@ -586,6 +632,17 @@
             }
         }
 
+        function addAudio() {
+            const audio = document.querySelector("audio");
+            // audio.autoplay = true;
+            console.log("abc");
+            audio.load();
+            audio.addEventListener("load", function() { 
+                console.log("play");
+                audio.play(); 
+            }, true);
+        }
+
         /**
          * Output infospot attach position in developer console by holding down Ctrl button
          */
@@ -629,6 +686,7 @@
         // Add panorama
         addPanorama();
         addCustomInfoSpot();
+        // addAudio();
     </script>
 
 </body>

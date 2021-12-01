@@ -6,6 +6,7 @@ function openModal(modal) {
 // Close the Modal
 function closeModal(modal) {
     document.getElementById(modal).style.display = "none";
+    playSound(true);
 }
 
 // var slideIndex = 1;
@@ -22,6 +23,7 @@ function currentSlide(n) {
 }
 
 function showSlides(n) {
+    playSound(false);
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("demo");

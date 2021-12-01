@@ -335,6 +335,11 @@ PANOLENS.Panorama.prototype.link = function ( pano, position, imageScale, imageS
          * @property {string} method - Viewer function name
          * @property {*} data - The argument to be passed into the method
          */
+        if (spot.element ) {
+            spot.element.style.display = 'none';
+            spot.element.left && ( spot.element.left.style.display = 'none' );
+            spot.element.right && ( spot.element.right.style.display = 'none' );
+        }
         scope.dispatchEvent( { type : 'panolens-viewer-handler', method: 'setPanorama', data: pano } );
 
     } );

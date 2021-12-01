@@ -12,6 +12,7 @@ function cunglentiengCurrentSlide(n) {
 }
 
 function showCunglentiengSlides(n) {
+    playSound(false);
     var i;
     var slides = document.getElementsByClassName("cunglentiengSlides");
     var dots = document.getElementsByClassName("cunglentiengdemo");

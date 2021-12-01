@@ -12,6 +12,7 @@ function ngoinhaCurrentSlide(n) {
 }
 
 function showNgoinhaSlides(n) {
+    playSound(false);
     var i;
     var slides = document.getElementsByClassName("ngoinhaSlides");
     var dots = document.getElementsByClassName("ngoinhademo");

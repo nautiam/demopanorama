@@ -12,6 +12,7 @@ function danhbaCurrentSlide(n) {
 }
 
 function showDanhbaSlides(n) {
+    playSound(false);
     var i;
     var slides = document.getElementsByClassName("danhbaSlides");
     var dots = document.getElementsByClassName("danhbademo");

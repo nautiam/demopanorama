@@ -6,6 +6,7 @@ function closeTocamModal(modal) {
         videos[i].currentTime = 0;
     }
     document.getElementById(modal).style.display = "none";
+    playSound(true);
 }
 
 // var slideIndex = 1;
@@ -22,6 +23,7 @@ function tocamCurrentSlide(n) {
 }
 
 function showTocamSlides(n) {
+    playSound(false);
     var i;
     var slides = document.getElementsByClassName("tocamSlides");
     var dots = document.getElementsByClassName("tocamdemo");
