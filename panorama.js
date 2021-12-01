@@ -91,7 +91,7 @@ function addPanorama() {
     phudieu1Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
     phudieu2Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 600, Image.ArrowDown);
 
-    viewer = new PANOLENS.Viewer();
+    viewer = new PANOLENS.Viewer({"controlButtons":['video','fullscreen']});
     viewer.add(letan1Pano, letan2Pano, letan3Pano, dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
 }
 

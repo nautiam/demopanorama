@@ -6,7 +6,7 @@ function closeBaolucModal(modal) {
         videos[i].currentTime = 0;
     }
     document.getElementById(modal).style.display = "none";
-    playSound(true);
+    playSound(isPlaying());
 }
 
 // Next/previous controls

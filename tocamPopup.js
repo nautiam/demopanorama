@@ -6,7 +6,7 @@ function closeTocamModal(modal) {
         videos[i].currentTime = 0;
     }
     document.getElementById(modal).style.display = "none";
-    playSound(true);
+    playSound(isPlaying());
 }
 
 // var slideIndex = 1;

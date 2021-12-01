@@ -6,7 +6,7 @@ function openModal(modal) {
 // Close the Modal
 function closeModal(modal) {
     document.getElementById(modal).style.display = "none";
-    playSound(true);
+    playSound(isPlaying());
 }
 
 // var slideIndex = 1;

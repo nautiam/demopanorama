@@ -17,25 +17,6 @@
 
 <body>
     <!-- Images used to open the lightbox -->
-    <!-- <div class="row">
-        <div class="column">
-            <img src="img_nature.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
-                class="hover-shadow cursor">
-        </div>
-        <div class="column">
-            <img src="img_snow.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
-                class="hover-shadow cursor">
-        </div>
-        <div class="column">
-            <img src="img_mountains.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
-                class="hover-shadow cursor">
-        </div>
-        <div class="column">
-            <img src="img_lights.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
-                class="hover-shadow cursor">
-        </div>
-    </div> -->
-
     <div id="myModal" class="modal">
         <span class="close cursor" onclick='closeModal("myModal");'>&times;</span>
         <div class="modal-content">
@@ -452,35 +433,15 @@
         </div>
     </div>
 
-    <div id="desc-container" style="display:none">
-        <video width="320" height="240" autoplay>
-            <source src="asset/textures/video/ClashofClans.mp4" type="video/mp4">
-        </video>
-    </div>
-
     <div id="letan2-container" class="letan2-container" style="display:none">
         <img src="asset/models/gioi-thieu-trien-lam.png" />
     </div>
 
-    <div id="chair-container" class="container" style="display:none">
-        <embed id="big-picture" src="asset/models/room/metal.jpg" />
-        <div class="gap"></div>
-        <div class="small-image">
-            <i class="metal"><embed id="metal" onclick='changeImage("asset/models/room/metal.jpg");'
-                    src="asset/models/room/metal.jpg" /></i>
-            <i class="wood_birch"><embed onclick='changeImage("asset/models/room/wood_birch.png");'
-                    src="asset/models/room/wood_birch.png" /></i>
-            <i class="wood_cherry"><embed id="wood_cherry" onclick='changeImage("asset/models/room/wood_cherry.png");'
-                    src="asset/models/room/wood_cherry.png" /></i>
-            <i class="1941-battle"><embed id="1941-battle" onclick='changeImage("asset/textures/1941-battle.jpg");'
-                    src="asset/textures/1941-battle.jpg" /></i>
-            <i class="1941-battle-thumb"><embed id="1941-battle-thumb"
-                    onclick='changeImage("asset/textures/1941-battle-thumb.png");'
-                    src="asset/textures/1941-battle-thumb.png" /></i>
-        </div>
-    </div>
-
     <div id="progress"></div>
+
+    <button id="mutebtn2" onclick="submit();">
+        <img id="muted" src="/asset/textures/sound-icon.png" />
+    </button>
 
     <!-- <iframe src="/asset/audio/250-milliseconds-of-silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe> -->
 
@@ -548,7 +509,7 @@
             // audio.play();
             // Call this only once
             if (!callAudio) {
-                playSound(true);
+                playSound(isPlaying());
                 callAudio = true;
             }
         })
@@ -558,9 +519,27 @@
             if (isPlay) {
                 audio.play();
             } else {
-                console.log("Stop");
-                console.log(audio);
                 audio.pause();
+            }
+        }
+
+        function submit() {
+            var muted = document.getElementById("muted");
+            if (muted.getAttribute('src') == "/asset/textures/sound-icon.png") {
+                playSound(false);
+                muted.src = "/asset/textures/sound-off.png";
+            } else {
+                playSound(true);
+                muted.src = "/asset/textures/sound-icon.png";
+            }
+        }
+
+        function isPlaying() {
+            var muted = document.getElementById("muted");
+            if (muted.getAttribute('src') == "/asset/textures/sound-icon.png") {
+                return true;
+            } else {
+                return false;
             }
         }
 
