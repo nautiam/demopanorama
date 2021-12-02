@@ -500,7 +500,7 @@
 
         var audio = document.createElement("AUDIO");
         document.body.appendChild(audio);
-        audio.src = "/asset/audio/file_example_MP3_700KB.mp3";
+        audio.src = "/asset/audio/bensound-thelounge.mp3";
         audio.loop = "true";
 
         var callAudio = false;
@@ -573,6 +573,7 @@
             progressElement.style.width = progress + '%';
             if (progress === 100) {
                 progressElement.classList.add('finish');
+                viewer.setCameraFov(60);
                 // console.log(event.target);
                 // infiniteLoop(event.target);
             }
