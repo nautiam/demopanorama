@@ -296,7 +296,7 @@ function zoomIn(depth) {
 var base = 50;
 var target = 60;
 function zoomOut(depth) {
-    console.log(base);
+    // console.log(base);
     setTimeout(function () {
         // console.log(initialZoomDepth);
         viewer.setCameraFov(base);
