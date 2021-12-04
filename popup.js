@@ -1,5 +1,6 @@
 // Open the Modal
 function openModal(modal) {
+    viewer.disableAutoRate();
     document.getElementById(modal).style.display = "block";
 }
 

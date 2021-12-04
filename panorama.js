@@ -3,6 +3,19 @@ function addPanorama() {
     dayLuiBaoLucXaPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-xa.jpg');
     dayLuiBaoLucXaPano.addEventListener('progress', onProgress);
     dayLuiBaoLucXaPano.addEventListener('enter', onEnter);
+    dayLuiBaoLucXaPano.addEventListener('enter-fade-start', function () {
+        // viewer.tweenControlCenter(lookAtPositions[2], 0);
+        // setTimeout(function(){ 
+        //     // alert('hello');
+        // }, 2000);
+        viewer.tweenControlCenter(lookAtPositions[1], 0);
+        initialZoomDepth = 70;
+        zoomIn(0.7);
+    });
+    dayLuiBaoLucXaPano.addEventListener('click', function(e) {
+        dayLuiBaoLucXaPano.onClick(e);
+        stop();
+    });
 
     var lookAtPositions = [
         new THREE.Vector3(5000, -2000, 0),
@@ -10,6 +23,8 @@ function addPanorama() {
         new THREE.Vector3(5000, -400, 0),
         new THREE.Vector3(4000, -600, 5000),
         new THREE.Vector3(5000, -1000, -2000),
+        new THREE.Vector3(5000, -800, -3500),
+        new THREE.Vector3(5000, -250, 3000)
     ];
     // Second panorama
     dayLuiBaoLucGanPano = new PANOLENS.ImagePanorama('asset/demo/day-lui-bao-luc-gan.jpg');
@@ -18,8 +33,11 @@ function addPanorama() {
     //     onProgress(e);
     //     tocamInfospot.focus();
     // });
+   
     dayLuiBaoLucGanPano.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(lookAtPositions[0], 0);
+        base = 50;
+        zoomOut(0.7);
     });
     dayLuiBaoLucGanPano.addEventListener('enter', onEnter);
 
@@ -27,14 +45,32 @@ function addPanorama() {
     anSinhPano = new PANOLENS.ImagePanorama('asset/demo/an-sinh-xa-hoi.jpg');
     anSinhPano.addEventListener('progress', onProgress);
     anSinhPano.addEventListener('enter', onEnter);
+    anSinhPano.addEventListener('enter-fade-start', function () {
+        viewer.tweenControlCenter(lookAtPositions[6], 0);
+    });
 
     koAiBiBoLaiPano = new PANOLENS.ImagePanorama('asset/demo/khong-ai-bi-bo-lai-phia-sau.jpg');
     koAiBiBoLaiPano.addEventListener('progress', onProgress);
     koAiBiBoLaiPano.addEventListener('enter', onEnter);
+    koAiBiBoLaiPano.addEventListener('enter-fade-start', function () {
+        viewer.tweenControlCenter(lookAtPositions[5], 0);
+    });
 
     cungLenTiengXaPano = new PANOLENS.ImagePanorama('asset/demo/cung-len-tieng-xa.jpg');
     cungLenTiengXaPano.addEventListener('progress', onProgress);
     cungLenTiengXaPano.addEventListener('enter', onEnter);
+    cungLenTiengXaPano.addEventListener('enter-fade-start', function () {
+        viewer.tweenControlCenter(lookAtPositions[2], 0);
+        setTimeout(function(){ 
+            // alert('hello');
+        }, 2000);
+        initialZoomDepth = 80;
+        zoomIn(0.7);
+    });
+    cungLenTiengXaPano.addEventListener('click', function(e) {
+        cungLenTiengXaPano.onClick(e);
+        stop();
+    });
 
     cungLenTiengGanPano = new PANOLENS.ImagePanorama('asset/demo/cung-len-tieng-gan.jpg');
     cungLenTiengGanPano.addEventListener('progress', onProgress);
@@ -68,7 +104,11 @@ function addPanorama() {
         // setTimeout(function(){ 
         //     // alert('hello');
         // }, 2000);
-        zoomIn();
+        zoomIn(0.7);
+    });
+    letan1Pano.addEventListener('click', function(e) {
+        letan1Pano.onClick(e);
+        stop();
     });
 
     letan2Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-2.jpg');
@@ -88,56 +128,43 @@ function addPanorama() {
     letan3Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
 
     dayLuiBaoLucXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowUp);
-    dayLuiBaoLucXaPano.link(anSinhPano, new THREE.Vector3(5000, -2500, -3000), 400, Image.ArrowLeft);
-    dayLuiBaoLucXaPano.link(koAiBiBoLaiPano, new THREE.Vector3(5000, -2500, 3000), 400, Image.ArrowRight);
+    dayLuiBaoLucXaPano.link(anSinhPano, new THREE.Vector3(4000, -3000, -5000), 400, Image.ArrowLeft);
+    dayLuiBaoLucXaPano.link(koAiBiBoLaiPano, new THREE.Vector3(4000, -3000, 5000), 400, Image.ArrowRight);
     dayLuiBaoLucXaPano.link(letan1Pano, new THREE.Vector3(5000, -4000, 0), 400, Image.ArrowDown);
 
-    dayLuiBaoLucGanPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(4000, -5000, 0), 400, Image.ArrowDown);
-    dayLuiBaoLucGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -4000, 0), 400, Image.ArrowUp);
-    dayLuiBaoLucGanPano.link(phudieu1Pano, new THREE.Vector3(5000, -3500, -4500), 400, Image.ArrowLeft);
-    dayLuiBaoLucGanPano.link(phudieu2Pano, new THREE.Vector3(5000, -3500, 4500), 400, Image.ArrowRight);
+    dayLuiBaoLucGanPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(4000, -4000, 0), 400, Image.ArrowDown);
+    // dayLuiBaoLucGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -4000, 0), 400, Image.ArrowUp);
+    // dayLuiBaoLucGanPano.link(phudieu1Pano, new THREE.Vector3(5000, -3500, -4500), 400, Image.ArrowLeft);
+    // dayLuiBaoLucGanPano.link(phudieu2Pano, new THREE.Vector3(5000, -3500, 4500), 400, Image.ArrowRight);
 
-    anSinhPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, -500), 400, Image.ArrowDown);
-    anSinhPano.link(phudieu1Pano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight);
-    anSinhPano.link(koAiBiBoLaiPano, new THREE.Vector3(5000, -3000, -3000), 400, Image.ArrowLeft);
+    anSinhPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(2500, -4000, -5000), 400, Image.ArrowLeft);
+    anSinhPano.link(phudieu1Pano, new THREE.Vector3(4000, -4500, 5000), 400, Image.ArrowRight);
+    // anSinhPano.link(koAiBiBoLaiPano, new THREE.Vector3(2500, -3500, -5000), 400, Image.ArrowLeft);
 
-    koAiBiBoLaiPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, -500), 400, Image.ArrowDown);
-    koAiBiBoLaiPano.link(anSinhPano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight);
-    koAiBiBoLaiPano.link(phudieu2Pano, new THREE.Vector3(5000, -3000, -3000), 400, Image.ArrowLeft);
+    koAiBiBoLaiPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(2500, -2500, 5000), 400, Image.ArrowRight);
+    // koAiBiBoLaiPano.link(anSinhPano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight);
+    koAiBiBoLaiPano.link(phudieu2Pano, new THREE.Vector3(2000, -3000, -5000), 400, Image.ArrowLeft);
 
     // cungLenTiengXaPano.link(cungLenTiengGanPano, new THREE.Vector3(5000, -300, 0), 400, Image.ArrowUp);
-    cungLenTiengXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
+    // cungLenTiengXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
     cungLenTiengXaPano.link(phudieu1Pano, new THREE.Vector3(5000, -3000, -2000), 400, Image.ArrowLeft);
     cungLenTiengXaPano.link(phudieu2Pano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight);
-    // bantayInfoSpot = new PANOLENS.Infospot(400, Image.ArrowRight);
-    // bantayInfoSpot.position.set(4000, -3500, 5000);
-    // cungLenTiengXaPano.add(bantayInfoSpot);
-    // bantayInfoSpot.addEventListener("click", function (event) {
-    //     viewer.tweenControlCenter(lookAtPositions[3], 0);
-    // });
-    cungLenTiengXaPano.addEventListener('enter-fade-start', function () {
-        viewer.tweenControlCenter(lookAtPositions[2], 0);
-        setTimeout(function(){ 
-            // alert('hello');
-        }, 2000);
-        zoomIn();
-    });
 
     cungLenTiengGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
 
-    phudieu1Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
-    phudieu1Pano.link(anSinhPano, new THREE.Vector3(5000, -3000, -3000), 400, Image.ArrowLeft);
-    phudieu1Pano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -3000, 3000), 400, Image.ArrowRight);
+    // phudieu1Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
+    phudieu1Pano.link(anSinhPano, new THREE.Vector3(3500, -3000, -5000), 400, Image.ArrowLeft);
+    phudieu1Pano.link(cungLenTiengXaPano, new THREE.Vector3(3500, -3000, 5000), 400, Image.ArrowRight);
 
-    phudieu2Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
-    phudieu2Pano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -3000, -3000), 400, Image.ArrowLeft);
-    phudieu2Pano.link(koAiBiBoLaiPano, new THREE.Vector3(5000, -3000, 3000), 400, Image.ArrowRight);
+    // phudieu2Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
+    phudieu2Pano.link(cungLenTiengXaPano, new THREE.Vector3(3500, -3000, -3000), 400, Image.ArrowLeft);
+    phudieu2Pano.link(koAiBiBoLaiPano, new THREE.Vector3(3500, -3000, 3000), 400, Image.ArrowRight);
 
     viewer = new PANOLENS.Viewer({"controlButtons":['video','fullscreen']});
     viewer.add(letan1Pano, letan2Pano, letan3Pano, dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
     
     
-    // letan3Pano.addEventListener("click", function (e) {
+    // phudieu1Pano.addEventListener("click", function (e) {
     //     if (e.intersects.length > 0) return;
     //     const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
     //     console.log('click panorama\n', e, 'point\n', a);
@@ -250,51 +277,80 @@ var i = 1;
 // myLoop();
 
 var initialZoomDepth = 80;
-function zoomIn() {
+function zoomIn(depth) {
     setTimeout(function () {
         // console.log(initialZoomDepth);
         viewer.setCameraFov(initialZoomDepth);
         // viewer.getCamera().fov = initialZoomDepth;
-        initialZoomDepth -= 0.7;
+        initialZoomDepth -= depth;
         if (initialZoomDepth > 50) {
-            zoomIn();
+            zoomIn(depth);
         } else {
-            // viewer.options.setAutoRotate = true;
-            // viewer.options.setAutoRotateSpeed = 1;
-            // viewer.options.setAutoRotateActivationDuration = 5000;
-            // viewer.OrbitControls.autoRotate = true;
-            // viewer.getControl().rotateLeft(-90 * Math.PI / 180);
-            // viewer.getControl().update();
-            // console.log("aaa");
-            autoRotate();
-            // viewer.enableAutoRate();
-            viewer.addUpdateCallback(function(){
-                // console.log("rotate");
-            });
+            viewer.OrbitControls.autoRotateSpeed = 1;
+            autoRotate(2000);
+        }
+        
+    }, 50)
+}
+
+var base = 50;
+var target = 60;
+function zoomOut(depth) {
+    console.log(base);
+    setTimeout(function () {
+        // console.log(initialZoomDepth);
+        viewer.setCameraFov(base);
+        // viewer.getCamera().fov = initialZoomDepth;
+        base += depth;
+        if (base < target) {
+            zoomOut(depth);
         }
         
     }, 50)
 }
 
 var rotateSpeed = 1;
-function autoRotate() {
+var timer = 0;
+function autoRotate(time) {
+    
     viewer.enableAutoRate();
-    setTimeout(function () {
+    timer = setTimeout(function () {
         // viewer.disableAutoRate();
         if (rotateSpeed === 1) {
-            // console.log("Dao nguoc");
+            console.log("Dao nguoc");
             viewer.OrbitControls.autoRotateSpeed *= -1;
             viewer.OrbitControls.autoRotate = true;
-            rotateSpeed = -1;
-            autoRotate();
-        } else if (rotateSpeed === -1) {
+            rotateSpeed -= 1;
+            // console.log(rotateSpeed);
+            autoRotate(time * 2);
+        } else if (rotateSpeed === 0) {
             console.log("Stop");
+            // viewer.disableAutoRate();
+            // rotateSpeed = 1;
+            viewer.OrbitControls.autoRotateSpeed *= -1;
+            viewer.OrbitControls.autoRotate = true;
+            rotateSpeed -= 1;
+            // console.log(rotateSpeed);
+            autoRotate(time / 2);
+        } else if (rotateSpeed = -1) {
             viewer.disableAutoRate();
             rotateSpeed = 1;
+            // console.log(rotateSpeed);
         }
 
-    }, 2000);
+    }, time);
+    console.log("Timer: " + timer);
+}
 
+function stop() {
+    // console.log("Remain timer : " + timer);
+    if (timer) {
+        console.log("stop timer");
+        clearTimeout(timer);
+        timer = 0;
+        viewer.disableAutoRate();
+        rotateSpeed = 1;
+    }
 }
 
 function myLoop() {         //  create a loop function
