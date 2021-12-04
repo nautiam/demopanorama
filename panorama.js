@@ -47,6 +47,15 @@ function addPanorama() {
     anSinhPano.addEventListener('enter', onEnter);
     anSinhPano.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(lookAtPositions[6], 0);
+        viewer.OrbitControls.autoRotateSpeed = -1;
+        viewer.OrbitControls.autoRotate = true;
+        timer = setTimeout(function () {
+            viewer.disableAutoRate();
+        }, 6500);
+    });
+    anSinhPano.addEventListener('click', function(e) {
+        anSinhPano.onClick(e);
+        stop();
     });
 
     koAiBiBoLaiPano = new PANOLENS.ImagePanorama('asset/demo/khong-ai-bi-bo-lai-phia-sau.jpg');
@@ -54,6 +63,15 @@ function addPanorama() {
     koAiBiBoLaiPano.addEventListener('enter', onEnter);
     koAiBiBoLaiPano.addEventListener('enter-fade-start', function () {
         viewer.tweenControlCenter(lookAtPositions[5], 0);
+        viewer.OrbitControls.autoRotateSpeed = 1;
+        viewer.OrbitControls.autoRotate = true;
+        timer = setTimeout(function () {
+            viewer.disableAutoRate();
+        }, 6500);
+    });
+    koAiBiBoLaiPano.addEventListener('click', function(e) {
+        koAiBiBoLaiPano.onClick(e);
+        stop();
     });
 
     cungLenTiengXaPano = new PANOLENS.ImagePanorama('asset/demo/cung-len-tieng-xa.jpg');
