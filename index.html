@@ -22,18 +22,23 @@
         <div class="modal-content">
 
             <div class="mySlides">
-                <div class="numbertext">1 / 3</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/covid19.jpg" style="height:90vh">
+                <div class="numbertext">1 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/me-do-dau.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <div class="mySlides">
-                <div class="numbertext">2 / 3</div>
-                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-68.pdf" height="1100px" width="100%"></iframe>
+                <div class="numbertext">2 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-dinh-68.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <div class="mySlides">
-                <div class="numbertext">3 / 3</div>
-                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-126.pdf" height="1100px" width="100%"></iframe>
+                <div class="numbertext">3 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-dinh-126.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">4 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/quyet-dinh-2232-qd-ttg-phong-ngua-va-ung-pho-voi-bao-luc-tren-co-so-gioi-2021-2025.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -46,20 +51,38 @@
 
             <!-- Thumbnail image controls -->
             <div class="column">
-                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/covid19.jpg" style="width:100%" onclick="currentSlide(1)"
-                    alt="Covid-19">
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/me-do-dau.jpg" style="width:100%" onclick="currentSlide(1)"
+                    alt="Mẹ đỡ đầu">
             </div>
             <div class="column">
-                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-68/nghi-quyet-68-1.jpg" style="width:100%" onclick="currentSlide(2)"
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/me-do-dau.jpg" style="width:100%" onclick="currentSlide(1)"
+                    alt="Mẹ đỡ đầu">
+            </div>
+            <div class="column">
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-68.jpg" style="width:100%" onclick="currentSlide(2)"
                     alt="Nghị quyết 68">
             </div>
             <div class="column">
-                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-126/nghi-quyet-126-1.jpg" style="width:100%" onclick="currentSlide(3)"
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/nghi-quyet-126.jpg" style="width:100%" onclick="currentSlide(3)"
                     alt="Nghị quyết 126">
+            </div>
+            <div class="column">
+                <img class="demo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/ho-tro-lao-dong/quyet-dinh-2232.jpg" style="width:100%" onclick="currentSlide(3)"
+                    alt="Quyết định 2232">
             </div>
         </div>
     </div>
 
+    <div id="tiviModal" class="modal">
+        <span class="close cursor" onclick='closeModal("tiviModal");'>&times;</span>
+        <div class="modal-content">
+
+            <div class="tiviSlides">
+                <!-- <div class="numbertext">1 / 2</div> -->
+                <img src="/asset/demo/tivi-01.jpg" height="100%" width="100%">
+            </div>
+        </div>
+    </div>
     <div id="ngoinhaModal" class="modal">
         <span class="close cursor" onclick='closeModal("ngoinhaModal");'>&times;</span>
         <div class="modal-content">
@@ -99,15 +122,15 @@
         <div class="modal-content">
 
             <div class="ossoSlides">
-                <div class="numbertext">1 / 1</div>
-                <img src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/256154823_2071190486383830_4420616191007957820_n.jpg" style="width:100%">
+                <div class="numbertext">1 / 2</div>
+                <video width="90%" controls>
+                    <source src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/clip-gioi-thieu-osso.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="ossoSlides">
                 <div class="numbertext">2 / 2</div>
-                <video width="90%" controls>
-                    <source src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/OSSO-Introduction.mp4" type="video/mp4">
-                </video>
+                <img src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/dia-chi-osso.png" style="width:100%">
             </div>
 
             <a class="prev" onclick="ossoPlusSlides(-1)">&#10094;</a>
@@ -120,12 +143,12 @@
 
             <!-- Thumbnail image controls -->
             <div class="column">
-                <img class="ossodemo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/256154823_2071190486383830_4420616191007957820_n.jpg" style="width:100%" onclick="ossoCurrentSlide(1)"
-                    alt="Bạn không đơn độc">
+                <img class="ossodemo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/osso-gioi-thieu.jpg" style="width:100%" onclick="ossoCurrentSlide(1)"
+                    alt="OSSO - Giới thiệu">
             </div>
             <div class="column">
-                <img class="ossodemo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/osso-gioi-thieu.jpg" style="width:100%" onclick="ossoCurrentSlide(2)"
-                    alt="OSSO - Giới thiệu">
+                <img class="ossodemo" src="/asset/board/KV-khong-ai-bi-bo-lai-phia-sau/Osso/dia-chi-osso.png" style="width:100%" onclick="ossoCurrentSlide(2)"
+                    alt="Địa chỉ OSSO">
             </div>
         </div>
     </div>
@@ -135,12 +158,25 @@
         <div class="modal-content">
 
             <div class="cunglentiengSlides">
-                <div class="numbertext">1 / 1</div>
+                <div class="numbertext">1 / 3</div>
                 <video width="90%" controls>
                     <source src="/asset/board/KV-cung-len-tieng/2021-16_Days_message_3.0.mp4" type="video/mp4">
                 </video>
             </div>
 
+            <div class="cunglentiengSlides">
+                <div class="numbertext">2 / 3</div>
+                <video width="90%" controls>
+                    <source src="/asset/board/KV-cung-len-tieng/Clip-Hoa-nhac-Giao-duc.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="cunglentiengSlides">
+                <div class="numbertext">3 / 3</div>
+                <video width="90%" controls>
+                    <source src="/asset/board/KV-cung-len-tieng/Clip-khau-hieu.mp4" type="video/mp4">
+                </video>
+            </div>
             <a class="prev" onclick="cunglentiengPlusSlides(-1)">&#10094;</a>
             <a class="next" onclick="cunglentiengPlusSlides(1)">&#10095;</a>
 
@@ -153,6 +189,14 @@
             <div class="column">
                 <img class="cunglentiengdemo" src="/asset/board/KV-cung-len-tieng/16-day-message.jpg" style="width: 100%" onclick="cunglentiengCurrentSlide(1)"
                     alt="16 Day Message">
+            </div>
+            <div class="column">
+                <img class="cunglentiengdemo" src="/asset/board/KV-cung-len-tieng/hoa-nhac-giao-duc.jpg" style="width: 100%" onclick="cunglentiengCurrentSlide(2)"
+                    alt="Hòa nhạc giáo dục">
+            </div>
+            <div class="column">
+                <img class="cunglentiengdemo" src="/asset/board/KV-cung-len-tieng/xoa-bo-bao-luc.jpg" style="width: 100%" onclick="cunglentiengCurrentSlide(3)"
+                    alt="Khẩu hiệu">
             </div>
         </div>
     </div>
@@ -187,95 +231,23 @@
         <div class="modal-content">
 
             <div class="baolucSlides">
-                <div class="numbertext">1 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-1.jpg" style="height:90vh">
+                <div class="numbertext">1 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/28.signed.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <div class="baolucSlides">
-                <div class="numbertext">2 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-2.jpg" style="height:90vh">
+                <div class="numbertext">2 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/1790.signed.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <div class="baolucSlides">
-                <div class="numbertext">3 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-3.jpg" style="height:90vh">
+                <div class="numbertext">3 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/OSSO.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <div class="baolucSlides">
-                <div class="numbertext">4 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-4.jpg" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">5 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/126495837_1785967824906099_384538671787521786_n.png" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">6 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/20191124vnbaolucphunutreemngoc0101.jpg" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">7 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/bao-hanh-phu-nu.jpg" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">8 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-1.png" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">9 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-2.png" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">10 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-3.png" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">11 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-4.png" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">12 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/wcms_764782.png" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">13 / 18</div>
-                <img src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/xam_hai_tre_em.jpeg" style="height:90vh">
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">14 / 18</div>
-                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/khuyen-nghi-chinh-sach-kinh-te.pdf" height="1100px" width="100%"></iframe>
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">15 / 18</div>
-                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-1970.pdf" height="1100px" width="100%"></iframe>
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">16 / 18</div>
-                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-28.pdf" height="1100px" width="100%"></iframe>
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">17 / 18</div>
-                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/quyet-dinh-2232.pdf" height="1100px" width="100%"></iframe>
-            </div>
-
-            <div class="baolucSlides">
-                <div class="numbertext">18 / 18</div>
-                <video width="90%" controls>
-                    <source src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/Dieu-tra-quoc-gia-ve-bao-luc-doi-voi-phu-nu-o-Viet-Nam-2019.mp4" type="video/mp4">
-                </video>
+                <div class="numbertext">4 / 4</div>
+                <iframe src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/san-se-yeu-thuong.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <a class="prev" onclick="baolucPlusSlides(-1)">&#10094;</a>
@@ -288,76 +260,20 @@
 
             <!-- Thumbnail image controls -->
             <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-1.jpg" style="width:100%" onclick="baolucCurrentSlide(1)"
-                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-2.jpg" style="width:100%" onclick="baolucCurrentSlide(2)"
-                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-3.jpg" style="width:100%" onclick="baolucCurrentSlide(3)"
-                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/16thing-vietnamese-viet-nam/16thing-vietnamese-viet-nam-4.jpg" style="width:100%" onclick="baolucCurrentSlide(4)"
-                    alt="16 điều bạn có thể làm để chấm dứt bạo lực đối với phụ nữ và trẻ em gái">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/126495837_1785967824906099_384538671787521786_n.png" style="width:100%" onclick="baolucCurrentSlide(5)"
-                    alt="Tô cam thế giới">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/20191124vnbaolucphunutreemngoc0101.jpg" style="width:100%" onclick="baolucCurrentSlide(6)"
-                    alt="Phụ nữ và trẻ em gái cần được bảo vệ">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/bao-hanh-phu-nu.jpg" style="width:100%" onclick="baolucCurrentSlide(7)"
-                    alt="Bạo hành phụ nữ">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-1.png" style="width:100%" onclick="baolucCurrentSlide(8)"
-                    alt="Các hình thức bạo lực">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-2.png" style="width:100%" onclick="baolucCurrentSlide(9)"
-                    alt="Các hình thức bạo lực">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-3.png" style="width:100%" onclick="baolucCurrentSlide(10)"
-                    alt="Các hình thức bạo lực">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/cac-hinh-thuc-bao-luc-4.png" style="width:100%" onclick="baolucCurrentSlide(11)"
-                    alt="Các hình thức bạo lực">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/wcms_764782.png" style="width:100%" onclick="baolucCurrentSlide(12)"
-                    alt="Lao động nữ trong đại dịch Covid-19">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/xam_hai_tre_em.jpeg" style="width:100%" onclick="baolucCurrentSlide(13)"
-                    alt="Xâm hại trẻ em">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/khuyen-nghi-chinh-sach-kinh-te/khuyen-nghi-chinh-sach-kinh-te-01.jpg" style="width:100%" onclick="baolucCurrentSlide(14)"
-                    alt="Khuyến nghị chính sách kinh tế">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-1970/nghi-quyet-1970-1.png" style="width:100%" onclick="baolucCurrentSlide(15)"
-                    alt="Nghị quyết 1970">
-            </div>
-            <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/nghi-quyet-28/nghi-quyet-28-1.png" style="width:100%" onclick="baolucCurrentSlide(16)"
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/28.jpg" style="width:100%" onclick="baolucCurrentSlide(1)"
                     alt="Nghị quyết 28">
             </div>
             <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/quyet-dinh-2232/quyet-dinh-2232-1.png" style="width:100%" onclick="baolucCurrentSlide(17)"
-                    alt="Quyết định 2232">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/1790.jpg" style="width:100%" onclick="baolucCurrentSlide(2)"
+                    alt="Nghị quyết 1970">
             </div>
             <div class="column">
-                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/Dieu-tra-quoc-gia.jpg" style="width:100%" onclick="baolucCurrentSlide(18)"
-                    alt="Điều tra quốc gia về bạo lực đối với phụ nữ ở Việt Nam">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/osso.jpg" style="width:100%" onclick="baolucCurrentSlide(3)"
+                    alt="Khuyến nghị chính sách kinh tế">
+            </div>
+            <div class="column">
+                <img class="baolucdemo" src="/asset/board/KV-chinh-sach-an-sinh-xa-hoi/chong-bao-luc/san-se-yeu-thuong.jpg" style="width:100%" onclick="baolucCurrentSlide(4)"
+                    alt="San sẻ yêu thương">
             </div>
         </div>
     </div>
@@ -367,38 +283,37 @@
         <div class="modal-content">
 
             <div class="tocamSlides">
-                <div class="numbertext">1 / 5</div>
+                <div class="numbertext">1 / 6</div>
                 <video width="90%" controls>
-                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/1.mp4" type="video/mp4">
+                    <source src="/asset/board/KV-to-cam-Viet-Nam/01-Binh-dang-gioi.mp4" type="video/mp4">
                 </video>
             </div>
 
             <div class="tocamSlides">
-                <div class="numbertext">2 / 5</div>
+                <div class="numbertext">2 / 6</div>
                 <video width="90%" controls>
-                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/2.mp4" type="video/mp4">
+                    <source src="/asset/board/KV-to-cam-Viet-Nam/2-Dieu-tra-quoc-gia-ve-bao-luc-doi-voi-phu-nu-viet-nam.mp4" type="video/mp4">
                 </video>
             </div>
 
             <div class="tocamSlides">
-                <div class="numbertext">3 / 5</div>
-                <video width="90%" controls>
-                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/3.mp4" type="video/mp4">
-                </video>
+                <div class="numbertext">3 / 6</div>
+                <iframe src="/asset/board/KV-to-cam-Viet-Nam/25.1-16thing-vietnamese-viet-nam.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <div class="tocamSlides">
-                <div class="numbertext">4 / 5</div>
-                <video width="90%" controls>
-                    <source src="/asset/board/KV-to-cam-Viet-Nam/chuoi-hoat-dong/4.mp4" type="video/mp4">
-                </video>
+                <div class="numbertext">4 / 6</div>
+                <iframe src="/asset/board/KV-to-cam-Viet-Nam/bao-luc-voi-phu-nu-gay-thiet-hai-hien-thoi-va-lau-dai-voi-kinh-te.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <div class="tocamSlides">
-                <div class="numbertext">5 / 5</div>
-                <video width="90%" controls>
-                    <source src="/asset/board/KV-to-cam-Viet-Nam/Binh-dang-gioi.mp4" type="video/mp4">
-                </video>
+                <div class="numbertext">5 / 6</div>
+                <iframe src="/asset/board/KV-to-cam-Viet-Nam/chien-luoc-quoc-gia-ve-binh-dang-gioi.pdf" height="1100px" width="100%"></iframe>
+            </div>
+
+            <div class="tocamSlides">
+                <div class="numbertext">6 / 6</div>
+                <iframe src="/asset/board/KV-to-cam-Viet-Nam/Infographic-ve-binh-dang-gioi.pdf" height="1100px" width="100%"></iframe>
             </div>
 
             <a class="prev" onclick="tocamPlusSlides(-1)">&#10094;</a>
@@ -411,24 +326,28 @@
 
             <!-- Thumbnail image controls -->
             <div class="column">
-                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney.jpg" style="width:100%" onclick="tocamCurrentSlide(1)"
-                    alt="Peace Journey - Hành trình bình yên">
-            </div>
-            <div class="column">
-                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney2.jpg" style="width:100%" onclick="tocamCurrentSlide(2)"
-                    alt="Peace Journey - Hành trình bình yên 2">
-            </div>
-            <div class="column">
-                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney3.jpg" style="width:100%" onclick="tocamCurrentSlide(3)"
-                    alt="Peace Journey - Hành trình bình yên 3">
-            </div>
-            <div class="column">
-                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/PeaceJourney4.jpg" style="width:100%" onclick="tocamCurrentSlide(4)"
-                    alt="Peace Journey - Hành trình bình yên 4">
-            </div>
-            <div class="column">
-                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/binh-dang-gioi.jpg" style="width:100%" onclick="tocamCurrentSlide(5)"
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/binh-dang-gioi.jpg" style="width:100%" onclick="tocamCurrentSlide(1)"
                     alt="Bình đẳng giới">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/bao-luc-doi-voi-phu-nu-viet-nam.jpg" style="width:100%" onclick="tocamCurrentSlide(2)"
+                    alt="Điều tra quốc gia về bạo lực đối với phụ nữ Việt Nam năm 2019">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/16-things.jpg" style="width:100%" onclick="tocamCurrentSlide(3)"
+                    alt="16 Điều bạn có thể làm để chấm dứt bạo lực với phụ nữ và trẻ em gái">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/bao-luc-voi-phu-nu-gay-thiet-hai-hien-thoi-va-lau-dai-ve-kinh-te.jpg" style="width:100%" onclick="tocamCurrentSlide(4)"
+                    alt="Bạo lực đối với phụ nữ gây thiệt hại hiện thời và lâu dài về kinh tế">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/chien-luoc-quoc-gia-ve-binh-dang-gioi.jpg" style="width:100%" onclick="tocamCurrentSlide(5)"
+                    alt="Chiến lược quốc gia về bình đẳng giới">
+            </div>
+            <div class="column">
+                <img class="tocamdemo" src="/asset/board/KV-to-cam-Viet-Nam/Infographic-ve-binh-dang-gioi.jpg" style="width:100%" onclick="tocamCurrentSlide(6)"
+                    alt="Infographic về bình đẳng giới">
             </div>
         </div>
     </div>

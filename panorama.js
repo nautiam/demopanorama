@@ -63,6 +63,13 @@ function addPanorama() {
         onEnter();
         // zoomIn();
     });
+    letan1Pano.addEventListener('enter-fade-start', function () {
+        viewer.tweenControlCenter(lookAtPositions[2], 0);
+        // setTimeout(function(){ 
+        //     // alert('hello');
+        // }, 2000);
+        zoomIn();
+    });
 
     letan2Pano = new PANOLENS.ImagePanorama('asset/demo/le-tan-2.jpg');
     letan2Pano.addEventListener('progress', onProgress);
@@ -72,16 +79,10 @@ function addPanorama() {
     letan3Pano.addEventListener('progress', onProgress);
     letan3Pano.addEventListener('enter', onEnter);
 
-    phudieu2Pano.addEventListener("click", function (e) {
-        if (e.intersects.length > 0) return;
-        const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
-        console.log('click panorama\n', e, 'point\n', a);
-    });
-
     // Linking panoramas
-    letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -3000, -2000), 400, Image.ArrowLeft, "Bấm vào đây để sang khu lễ tân", 60);
-    letan1Pano.link(letan3Pano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight);
-    letan1Pano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowUp);
+    letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -2200, -2000), 400, Image.ArrowLeft, "Bấm sang trái để xem thông tin cuộc triển lãm", 60);
+    letan1Pano.link(letan3Pano, new THREE.Vector3(5000, -2200, 2000), 400, Image.ArrowRight, "Bấm sang phải để xem bản đồ khu vực triển lãm", 60);
+    letan1Pano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -2200, 0), 400, Image.ArrowUp, "Bấm sang đây để vào không gian triển lãm", 60);
 
     letan2Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
     letan3Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
@@ -135,6 +136,12 @@ function addPanorama() {
     viewer = new PANOLENS.Viewer({"controlButtons":['video','fullscreen']});
     viewer.add(letan1Pano, letan2Pano, letan3Pano, dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
     
+    
+    // letan3Pano.addEventListener("click", function (e) {
+    //     if (e.intersects.length > 0) return;
+    //     const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
+    //     console.log('click panorama\n', e, 'point\n', a);
+    // });
 }
 
 function addCustomInfoSpot() {
@@ -147,6 +154,20 @@ function addCustomInfoSpot() {
     letan2InfoSpot.position.set(5000, -500, 300);
     letan2InfoSpot.addHoverElement(document.getElementById('letan2-container'), 20);
     letan2Pano.add(letan2InfoSpot);
+
+    letan3InfoSpot = new PANOLENS.Infospot(300, Image.Info);
+    letan3InfoSpot.position.set(5000, -550, 1300);
+    // letan3InfoSpot.addHoverElement(document.getElementById('letan2-container'), 20);
+    letan3InfoSpot.addHoverText("Bấm vào đây để xem chi tiết thông tin");
+    letan3Pano.add(letan3InfoSpot);
+    letan3InfoSpot.addEventListener("click", function (event) {
+        openModal("tiviModal");
+        if (letan3InfoSpot.element ) {
+            letan3InfoSpot.element.style.display = 'none';
+            letan3InfoSpot.element.left && ( spot.element.left.style.display = 'none' );
+            letan3InfoSpot.element.right && ( spot.element.right.style.display = 'none' );
+        }
+    });
 
     infospot = new PANOLENS.Infospot(300, Image.Chuoi, true);
     infospot.position.set(5000, 0, 0);
@@ -231,15 +252,49 @@ var i = 1;
 var initialZoomDepth = 80;
 function zoomIn() {
     setTimeout(function () {
-        console.log(initialZoomDepth);
+        // console.log(initialZoomDepth);
         viewer.setCameraFov(initialZoomDepth);
         // viewer.getCamera().fov = initialZoomDepth;
-        initialZoomDepth -= 3;
+        initialZoomDepth -= 0.7;
         if (initialZoomDepth > 50) {
             zoomIn();
+        } else {
+            // viewer.options.setAutoRotate = true;
+            // viewer.options.setAutoRotateSpeed = 1;
+            // viewer.options.setAutoRotateActivationDuration = 5000;
+            // viewer.OrbitControls.autoRotate = true;
+            // viewer.getControl().rotateLeft(-90 * Math.PI / 180);
+            // viewer.getControl().update();
+            // console.log("aaa");
+            autoRotate();
+            // viewer.enableAutoRate();
+            viewer.addUpdateCallback(function(){
+                // console.log("rotate");
+            });
         }
         
     }, 50)
+}
+
+var rotateSpeed = 1;
+function autoRotate() {
+    viewer.enableAutoRate();
+    setTimeout(function () {
+        // viewer.disableAutoRate();
+        if (rotateSpeed === 1) {
+            // console.log("Dao nguoc");
+            viewer.OrbitControls.autoRotateSpeed *= -1;
+            viewer.OrbitControls.autoRotate = true;
+            rotateSpeed = -1;
+            autoRotate();
+        } else if (rotateSpeed === -1) {
+            console.log("Stop");
+            viewer.disableAutoRate();
+            rotateSpeed = 1;
+        }
+
+    }, 2000);
+
 }
 
 function myLoop() {         //  create a loop function
