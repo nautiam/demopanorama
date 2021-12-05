@@ -138,55 +138,55 @@ function addPanorama() {
     letan3Pano.addEventListener('enter', onEnter);
 
     // Linking panoramas
-    letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -2200, -2000), 400, Image.ArrowLeft, "Bấm sang trái để xem thông tin cuộc triển lãm", 60);
-    letan1Pano.link(letan3Pano, new THREE.Vector3(5000, -2200, 2000), 400, Image.ArrowRight, "Bấm sang phải để xem bản đồ khu vực triển lãm", 60);
-    letan1Pano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -2200, 0), 400, Image.ArrowUp, "Bấm sang đây để vào không gian triển lãm", 60);
+    letan1Pano.link(letan2Pano, new THREE.Vector3(5000, -2200, -2000), 400, Image.ArrowLeft, "sang trái xem thông tin cuộc triển lãm", 60);
+    letan1Pano.link(letan3Pano, new THREE.Vector3(5000, -2200, 2000), 400, Image.ArrowRight, "Sang phải xem bản đồ khu vực triển lãm", 60);
+    letan1Pano.link(dayLuiBaoLucXaPano, new THREE.Vector3(5000, -2200, 0), 400, Image.ArrowUp, "Vào không gian triển lãm", 60);
 
-    letan2Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
-    letan3Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
+    letan2Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown, "Di chuyển quay lại", 60);
+    letan3Pano.link(letan1Pano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown, "Di chuyển quay lại", 60);
 
-    dayLuiBaoLucXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowUp);
-    dayLuiBaoLucXaPano.link(anSinhPano, new THREE.Vector3(4000, -3000, -5000), 400, Image.ArrowLeft);
-    dayLuiBaoLucXaPano.link(koAiBiBoLaiPano, new THREE.Vector3(4000, -3000, 5000), 400, Image.ArrowRight);
-    dayLuiBaoLucXaPano.link(letan1Pano, new THREE.Vector3(5000, -4000, 0), 400, Image.ArrowDown);
+    dayLuiBaoLucXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowUp, "Di chuyển vào Trái tim Tô cam", 60);
+    dayLuiBaoLucXaPano.link(anSinhPano, new THREE.Vector3(4000, -3000, -5000), 400, Image.ArrowLeft,"Sang trái vào khu Chính sách An sinh Xã hội", 60);
+    dayLuiBaoLucXaPano.link(koAiBiBoLaiPano, new THREE.Vector3(4000, -3000, 5000), 400, Image.ArrowRight,"Sang phải vào khu Không ai bị bỏ lại phía sau", 60);
+    dayLuiBaoLucXaPano.link(letan1Pano, new THREE.Vector3(5000, -4000, 0), 400, Image.ArrowDown, "Di chuyển quay lại khu lễ tân", 60);
 
-    dayLuiBaoLucGanPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(4000, -4000, 0), 400, Image.ArrowDown);
+    dayLuiBaoLucGanPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(4000, -4000, 0), 400, Image.ArrowDown, "Di chuyển quay lại", 60);
     // dayLuiBaoLucGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -4000, 0), 400, Image.ArrowUp);
     // dayLuiBaoLucGanPano.link(phudieu1Pano, new THREE.Vector3(5000, -3500, -4500), 400, Image.ArrowLeft);
     // dayLuiBaoLucGanPano.link(phudieu2Pano, new THREE.Vector3(5000, -3500, 4500), 400, Image.ArrowRight);
 
-    anSinhPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(2500, -4000, -5000), 400, Image.ArrowLeft);
-    anSinhPano.link(phudieu1Pano, new THREE.Vector3(4000, -4500, 5000), 400, Image.ArrowRight);
+    anSinhPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(2500, -4000, -5000), 500, Image.ArrowLeft,"Di chuyển quay lại", 60);
+    anSinhPano.link(phudieu1Pano, new THREE.Vector3(4000, -4500, 5000), 500, Image.ArrowRight,"Sang trái vào khu biểu tượng Đẩy lùi bạo lực", 60);
     // anSinhPano.link(koAiBiBoLaiPano, new THREE.Vector3(2500, -3500, -5000), 400, Image.ArrowLeft);
 
-    koAiBiBoLaiPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(2500, -2500, 5000), 400, Image.ArrowRight);
+    koAiBiBoLaiPano.link(dayLuiBaoLucXaPano, new THREE.Vector3(2500, -2500, 5000), 400, Image.ArrowRight, "Di chuyển quay lại", 60);
     // koAiBiBoLaiPano.link(anSinhPano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight);
-    koAiBiBoLaiPano.link(phudieu2Pano, new THREE.Vector3(2000, -3000, -5000), 400, Image.ArrowLeft);
+    koAiBiBoLaiPano.link(phudieu2Pano, new THREE.Vector3(2000, -3000, -5000), 400, Image.ArrowLeft, "Sang trái vào khu biểu tượng Bình đẳng giới", 60);
 
     // cungLenTiengXaPano.link(cungLenTiengGanPano, new THREE.Vector3(5000, -300, 0), 400, Image.ArrowUp);
     // cungLenTiengXaPano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
-    cungLenTiengXaPano.link(phudieu1Pano, new THREE.Vector3(5000, -3000, -2000), 400, Image.ArrowLeft);
-    cungLenTiengXaPano.link(phudieu2Pano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight);
+    cungLenTiengXaPano.link(phudieu1Pano, new THREE.Vector3(5000, -3000, -2000), 400, Image.ArrowLeft, "Sang trái vào khu biểu tượng Đẩy lùi bạo lực", 60);
+    cungLenTiengXaPano.link(phudieu2Pano, new THREE.Vector3(5000, -3000, 2000), 400, Image.ArrowRight, "Sang phải vào khu biểu tượng Bình đẳng giới", 60);
 
-    cungLenTiengGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
+    cungLenTiengGanPano.link(cungLenTiengXaPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown, "Bấm vào đây để quay lại", 60);
 
     // phudieu1Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
-    phudieu1Pano.link(anSinhPano, new THREE.Vector3(3500, -3000, -5000), 400, Image.ArrowLeft);
-    phudieu1Pano.link(cungLenTiengXaPano, new THREE.Vector3(3500, -3000, 5000), 400, Image.ArrowRight);
+    phudieu1Pano.link(anSinhPano, new THREE.Vector3(3500, -3000, -5000), 500, Image.ArrowLeft,"Sang trái vào khu Chính sách An sinh Xã hội", 60);
+    phudieu1Pano.link(cungLenTiengXaPano, new THREE.Vector3(3500, -3000, 5000), 500, Image.ArrowRight, "Sang phải vào khu Cùng lên tiếng", 60);
 
     // phudieu2Pano.link(dayLuiBaoLucGanPano, new THREE.Vector3(5000, -3000, 0), 400, Image.ArrowDown);
-    phudieu2Pano.link(cungLenTiengXaPano, new THREE.Vector3(3500, -3000, -3000), 400, Image.ArrowLeft);
-    phudieu2Pano.link(koAiBiBoLaiPano, new THREE.Vector3(3500, -3000, 3000), 400, Image.ArrowRight);
+    phudieu2Pano.link(cungLenTiengXaPano, new THREE.Vector3(3500, -3000, -3000), 400, Image.ArrowLeft, "Sang trái vào khu Cùng lên tiếng", 60);
+    phudieu2Pano.link(koAiBiBoLaiPano, new THREE.Vector3(3500, -3000, 3000), 400, Image.ArrowRight, "Sang phải vào khu Không ai bị bỏ lại phía sau", 60);
 
     viewer = new PANOLENS.Viewer({"controlButtons":['video','fullscreen']});
     viewer.add(letan1Pano, letan2Pano, letan3Pano, dayLuiBaoLucXaPano, dayLuiBaoLucGanPano, anSinhPano, koAiBiBoLaiPano, cungLenTiengXaPano, cungLenTiengGanPano, phudieu1Pano, phudieu2Pano);
     
     
-    // phudieu1Pano.addEventListener("click", function (e) {
-    //     if (e.intersects.length > 0) return;
-    //     const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
-    //     console.log('click panorama\n', e, 'point\n', a);
-    // });
+    anSinhPano.addEventListener("click", function (e) {
+        if (e.intersects.length > 0) return;
+        const a = viewer.raycaster.intersectObject(viewer.panorama, true)[0].point;
+        console.log('click panorama\n', e, 'point\n', a);
+    });
 }
 
 function addCustomInfoSpot() {
@@ -335,14 +335,14 @@ function autoRotate(time) {
     timer = setTimeout(function () {
         // viewer.disableAutoRate();
         if (rotateSpeed === 1) {
-            console.log("Dao nguoc");
+            // console.log("Dao nguoc");
             viewer.OrbitControls.autoRotateSpeed *= -1;
             viewer.OrbitControls.autoRotate = true;
             rotateSpeed -= 1;
             // console.log(rotateSpeed);
             autoRotate(time * 2);
         } else if (rotateSpeed === 0) {
-            console.log("Stop");
+            // console.log("Stop");
             // viewer.disableAutoRate();
             // rotateSpeed = 1;
             viewer.OrbitControls.autoRotateSpeed *= -1;
@@ -363,7 +363,7 @@ function autoRotate(time) {
 function stop() {
     // console.log("Remain timer : " + timer);
     if (timer) {
-        console.log("stop timer");
+        // console.log("stop timer");
         clearTimeout(timer);
         timer = 0;
         viewer.disableAutoRate();
