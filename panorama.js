@@ -203,7 +203,7 @@ function addCustomInfoSpot() {
     letan3InfoSpot = new PANOLENS.Infospot(300, Image.Info);
     letan3InfoSpot.position.set(5000, -550, 1300);
     // letan3InfoSpot.addHoverElement(document.getElementById('letan2-container'), 20);
-    letan3InfoSpot.addHoverText("Bấm vào đây để xem chi tiết thông tin");
+    // letan3InfoSpot.addHoverText("Bấm vào đây để xem chi tiết thông tin");
     letan3Pano.add(letan3InfoSpot);
     letan3InfoSpot.addEventListener("click", function (event) {
         openModal("tiviModal");
