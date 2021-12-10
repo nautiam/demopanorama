@@ -1,5 +1,15 @@
 // var slideIndex = 1;
 // showSlides(slideIndex);
+// Close the Modal
+function closeNgoinhaModal(modal) {
+    var videos = document.getElementsByTagName("video");
+    for (i = 0; i < videos.length; i++) {
+        videos[i].pause();
+        videos[i].currentTime = 0;
+    }
+    document.getElementById(modal).style.display = "none";
+    playSound(isPlaying());
+}
 
 // Next/previous controls
 function ngoinhaPlusSlides(n) {
@@ -22,8 +32,19 @@ function showNgoinhaSlides(n) {
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
+    var ngoinhaModal = document.getElementById("ngoinhaModal");
+    var videos = ngoinhaModal.getElementsByTagName("video");
+    for (i = 0; i < videos.length; i++) {
+        videos[i].pause();
+    }
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    var element = slides[slideIndex - 1];
+    var children = element.getElementsByTagName('video');
+    for (var i = 0; i < children.length; i++) {
+        children[i].play();
     }
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
